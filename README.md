@@ -1,5 +1,5 @@
-# cse210-student-template
-This is the starter code for students in CSE 210.
+# cse210-hw
+This is a template for me as I am taking CSE 210 at BYU-Idaho. As I take the class I will update it.
 
 This repository contains the starter code for many different projects. They are arranged as follows:
 
