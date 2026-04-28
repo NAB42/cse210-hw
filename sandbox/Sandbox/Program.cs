@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        for(int i = 0; i <= 200; i++)
+        {
+            Console.WriteLine(Math.Pow(i,i));
+        }
     }
 }
