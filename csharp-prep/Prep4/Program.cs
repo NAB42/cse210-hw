@@ -17,8 +17,13 @@ class Program
             current = int.Parse(Console.ReadLine());
             numbers.Add(current);
         }while(current != 0);
+        int sum = 0;
         foreach (int num in numbers){ 
             Console.Write(num + ", ");
+            sum += num;
         }
+        double avg = (double)sum/(double)numbers.Count()-1;
+        Console.WriteLine("Sum is " + sum);
+        Console.WriteLine("Avg is " + avg);
     }
 }
