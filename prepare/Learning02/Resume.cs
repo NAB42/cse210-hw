@@ -13,6 +13,11 @@ public class Resume
         this._name = "Tim Cook";
         this._jobs = new List<Job>();
     }
+    public Resume(string name,List<Job> jobs)
+    {
+        this._name = name;
+        this._jobs = jobs;
+    }
 
     // Methods
     public void Display()
