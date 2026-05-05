@@ -2,6 +2,7 @@
 {
     public static void Main(string[] args)
     {
+        // This is a test comment for git
         Console.WriteLine("Hey");
         Circle c = new Circle(17);
         Console.WriteLine(c.GetArea());
