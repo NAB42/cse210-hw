@@ -1,6 +1,7 @@
 
 
 using System.IO;
+using System.Text.RegularExpressions;
 class Journal
 {
     // Attributes
@@ -15,17 +16,31 @@ class Journal
             try
             {
                 int lineCount = File.ReadLines("journal.csv").Count();
-                for (int i = 0; i <= lineCount; i++)
+                _exists = true;
+                for (int i = 0; i <= lineCount-1; i++)
                 {
                     string csvLine = reader.ReadLine();
                     string[] entry = csvLine.Split(","); 
-                    _entries.Add(new Entry(entry[0],int.Parse(entry[1]),entry[2]));
+                    foreach(string e in entry)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    Console.WriteLine(entry[2].Length);
+                    string fixedResponse = entry[2].Replace("\u001B",",");
+                    Console.WriteLine(fixedResponse.Length);
+                    _entries.Add(new Entry(entry[0],int.Parse(entry[1]),fixedResponse));
                 }
-                _exists = true;
+                
             }
             catch (NullReferenceException)
             {
                _exists = !true; 
+            }
+            catch (IndexOutOfRangeException n)
+            {
+                /*Console.WriteLine("It broke.");
+                Console.WriteLine(n);
+                Console.WriteLine(this.GetAll());*/
             }
         }
     }
@@ -36,6 +51,7 @@ class Journal
         string final = "";
         foreach (Entry entry in _entries)
         {
+            entry.FixCommas();
             final += $"{entry.toCSV()}\n";
         }
         using (StreamWriter writer = new StreamWriter("journal.csv"))
@@ -59,6 +75,10 @@ class Journal
     public bool Exists()
     {
         return _exists;
+    }
+    public string GetRecent()
+    {
+        return _entries[_entries.Count-1].GetEntry();
     }
 
 }

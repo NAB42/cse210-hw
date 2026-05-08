@@ -13,16 +13,18 @@ class Program
         {
             if (cont == "1")
             {
-                
+                Console.WriteLine(journal.GetRecent());
             }
             else if (cont == "2")
             {
-                
+                Console.WriteLine(journal.GetAll());
             }
             else if (cont == "3")
             {
                 Entry entry = new Entry(date);
                 entry.DisplayPrompt();
+                journal.AddEntry(entry);
+                Console.WriteLine("Added to Journal.");
                 
             }
             Console.WriteLine(
@@ -36,5 +38,7 @@ class Program
             cont=Console.ReadLine();
             
         }
+        journal.WriteAll();
+        Console.WriteLine("Journal Saved.");
     }
 }
