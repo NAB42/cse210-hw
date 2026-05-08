@@ -7,45 +7,63 @@ class Journal
     /* Attributes */
     private List<Entry> _entries = new List<Entry>();
     private bool _exists;
+    private string _filename;
 
 
     /* Constructors */
-    public Journal()
+    public Journal(string filename)
     {
-        using(StreamReader reader = new StreamReader("journal.csv"))
-        {
-            try
-            {
-                int lineCount = File.ReadLines("journal.csv").Count();
-                _exists = true;
-                // A for loop to go through each line and create an Entry out of them
-                // to parse into the List. 
-                for (int i = 0; i <= lineCount; i++)
-                {
-                    string csvLine = reader.ReadLine();
-                    string[] entry = csvLine.Split(","); 
-                    // Because CSV files are comma separated, this takes it into account.
-                    // Refer to the Entry class for more info.
-                    string fixedResponse = entry[2].Replace("\u001B",",");
-                    // Adds the Entry to the List.
-                    _entries.Add(new Entry(entry[0],int.Parse(entry[1]),fixedResponse));
-                }
-                
-            }
-            // This accounts for the lack of a journal. Obviously if the file is empty
-            // nothing can be loaded in, so it sets the _exists attribute to false.
-            catch (NullReferenceException)
-            {
-               _exists = !true; 
-            }
-            // This accounts for any extra lines in the CSV file. It just keeps 
-            // going as if nothing happened.
-            catch (IndexOutOfRangeException){}
-        }
+        LoadJournal(filename);
     }
 
 
     /* Methods */
+
+    public void LoadJournal(string filename)
+    {
+        _entries.Clear();
+        _filename=filename;
+        try{
+            using(StreamReader reader = new StreamReader(filename))
+            {
+                try
+                {
+                    int lineCount = File.ReadLines(filename).Count();
+                    _exists = true;
+                    // A for loop to go through each line and create an Entry out of them
+                    // to parse into the List. 
+                    for (int i = 0; i <= lineCount; i++)
+                    {
+                        string csvLine = reader.ReadLine();
+                        string[] entry = csvLine.Split(","); 
+                        // Because CSV files are comma separated, this takes it into account.
+                        // Refer to the Entry class for more info.
+                        string fixedResponse = entry[2].Replace("\u001B",",");
+                        // Adds the Entry to the List.
+                        _entries.Add(new Entry(entry[0],int.Parse(entry[1]),fixedResponse));
+                    }
+                    
+                }
+                // This accounts for the lack of a journal. Obviously if the file is empty
+                // nothing can be loaded in, so it sets the _exists attribute to false.
+                catch (NullReferenceException)
+                {
+                _exists = !true; 
+                }
+
+                // This accounts for any extra lines in the CSV file. It just keeps 
+                // going as if nothing happened.
+                catch (IndexOutOfRangeException){}
+            }
+        }
+
+        // If the file doesn't exist, it is created.
+        catch (FileNotFoundException) 
+        {
+            using(File.Create(filename)){}
+            _exists=!true;
+        }
+    }
 
     // Writes all the changes to the CSV file.
     public void WriteAll()
@@ -58,7 +76,7 @@ class Journal
             final += $"{entry.toCSV()}\n";
         }
         // And then it writes that whole string to the file.
-        using (StreamWriter writer = new StreamWriter("journal.csv"))
+        using (StreamWriter writer = new StreamWriter(_filename))
         {
             writer.WriteLine(final);
         }

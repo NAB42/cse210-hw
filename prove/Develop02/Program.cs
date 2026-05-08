@@ -23,7 +23,11 @@ class Program
 
         // Variable to determine if the user wants to continue
         string cont="";
-        Journal journal = new Journal();
+
+
+        // Prompts user for the filename and constructs the file.
+        Console.Write("Enter Journal filename: ");
+        Journal journal = new Journal(Console.ReadLine());
 
         // Ternary operator determining how the program should start, based on 
         // if the Journal is empty or not. If it is, the program jumps straight to 
@@ -32,7 +36,7 @@ class Program
 
         // This is the menu. It receives user input and follows accordingly.
         // Ends when the user types '4' (obviously)
-        while (cont != "4")
+        while (cont != "6")
         {
             if (cont == "1")
             {
@@ -55,14 +59,27 @@ class Program
                 Console.WriteLine("Added to Journal.");
                 
             }
+            else if (cont == "4")
+            {
+                journal.WriteAll();
+                Console.WriteLine("Journal Saved.");
+            }
+            else if (cont == "5")
+            {
+                Console.Write("Enter a new filename: ");
+                journal.LoadJournal(Console.ReadLine());
+
+            }
             Console.WriteLine(
             """
 
-            Choose an option (1-4):
+            Choose an option (1-6):
             1. Read most recent entry
             2. Read all entries
             3. Create new entry
-            4. Quit
+            4. Save entries to Journal
+            5. Load new Journal
+            6. Quit
 
             """);
             cont=Console.ReadLine();
