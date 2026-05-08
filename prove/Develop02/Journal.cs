@@ -1,14 +1,15 @@
-
-
+// By Nate Boulton
+// This is the Journal class. It determines how the Journal object works. Refer to the main
+// program for more details.
 using System.IO;
-using System.Text.RegularExpressions;
 class Journal
 {
-    // Attributes
+    /* Attributes */
     private List<Entry> _entries = new List<Entry>();
     private bool _exists;
 
-    // Constructors
+
+    /* Constructors */
     public Journal()
     {
         using(StreamReader reader = new StreamReader("journal.csv"))
@@ -17,48 +18,54 @@ class Journal
             {
                 int lineCount = File.ReadLines("journal.csv").Count();
                 _exists = true;
-                for (int i = 0; i <= lineCount-1; i++)
+                // A for loop to go through each line and create an Entry out of them
+                // to parse into the List. 
+                for (int i = 0; i <= lineCount; i++)
                 {
                     string csvLine = reader.ReadLine();
                     string[] entry = csvLine.Split(","); 
-                    foreach(string e in entry)
-                    {
-                        Console.WriteLine(e);
-                    }
-                    Console.WriteLine(entry[2].Length);
+                    // Because CSV files are comma separated, this takes it into account.
+                    // Refer to the Entry class for more info.
                     string fixedResponse = entry[2].Replace("\u001B",",");
-                    Console.WriteLine(fixedResponse.Length);
+                    // Adds the Entry to the List.
                     _entries.Add(new Entry(entry[0],int.Parse(entry[1]),fixedResponse));
                 }
                 
             }
+            // This accounts for the lack of a journal. Obviously if the file is empty
+            // nothing can be loaded in, so it sets the _exists attribute to false.
             catch (NullReferenceException)
             {
                _exists = !true; 
             }
-            catch (IndexOutOfRangeException n)
-            {
-                /*Console.WriteLine("It broke.");
-                Console.WriteLine(n);
-                Console.WriteLine(this.GetAll());*/
-            }
+            // This accounts for any extra lines in the CSV file. It just keeps 
+            // going as if nothing happened.
+            catch (IndexOutOfRangeException){}
         }
     }
 
-    // Methods
+
+    /* Methods */
+
+    // Writes all the changes to the CSV file.
     public void WriteAll()
     {
         string final = "";
+        // First it creates a string that holds the entire Journal,
         foreach (Entry entry in _entries)
         {
             entry.FixCommas();
             final += $"{entry.toCSV()}\n";
         }
+        // And then it writes that whole string to the file.
         using (StreamWriter writer = new StreamWriter("journal.csv"))
         {
             writer.WriteLine(final);
         }
     }
+
+    // Retreives all the entries and returns them as a big string, much 
+    // like WriteAll() but in a different format.
     public string GetAll()
     {
         string final = "";
@@ -68,14 +75,21 @@ class Journal
         }
         return final;
     }
+
+    // Appends the given entry to the List.
     public void AddEntry(Entry entry)
     {
         _entries.Add(entry);
     }
+
+    // Accesses the encapsulated _exists bool.
     public bool Exists()
     {
         return _exists;
     }
+
+    // Retreives the most recent entry put into the Journal.
+    // The -1 accounts for the index offset that arrays have.
     public string GetRecent()
     {
         return _entries[_entries.Count-1].GetEntry();
