@@ -36,7 +36,7 @@ class Program
 
         // This is the menu. It receives user input and follows accordingly.
         // Ends when the user types '4' (obviously)
-        while (cont != "6")
+        while (cont != "7")
         {
             if (cont == "1")
             {
@@ -74,12 +74,10 @@ class Program
                 journal.LoadJournal(Console.ReadLine());
 
             }
-            /* else if (cont == "6")
+            else if (cont == "6")
             {
-                Entry entry = new Entry(date);
-                Console.Write("Enter new prompt: \n>");
-                entry.AddPrompt(Console.ReadLine());
-            } */
+                Console.WriteLine(journal.GetStats());
+            } 
             Console.WriteLine(
             """
 
@@ -89,7 +87,8 @@ class Program
             3. Create new entry
             4. Save entries to Journal
             5. Load new Journal
-            6. Quit
+            6. Get Journal Stats
+            7. Quit
 
             """);
             cont=Console.ReadLine();

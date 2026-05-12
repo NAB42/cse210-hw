@@ -90,6 +90,15 @@ public class Entry
     {
         return _prompts;
     }
+    public string GetResponse()
+    {
+        return _response;
+    }
+    public DateTime GetDate()
+    {
+        DateTime.TryParse(_date,out DateTime result);
+        return result;
+    }
 }
 
 
@@ -108,8 +117,8 @@ public class Entry
 
 
 
-    // The forgotten
-    
+    // The forgotten. It got too messy
+
     /* public void LoadPrompts()
     {
         _prompts = new List<string>{""};

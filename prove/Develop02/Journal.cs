@@ -113,4 +113,29 @@ class Journal
         return _entries[_entries.Count-1].GetEntry();
     }
 
+    // Ok so this finds 3 statistics to display, to help the journaler
+    // focus on improving or see their progress.
+    public string GetStats()
+    {
+        // This section deals with determining the number of entries per day.
+        DateTime firstDay = _entries[0].GetDate();
+        DateTime lastDay = _entries[_entries.Count-1].GetDate();
+        double eavg = _entries.Count/(lastDay-firstDay).TotalDays;
+        // This finds the average size of the entries, to see how much they are writing.
+        int avgSize=0;int count=0;
+        foreach (Entry entry in _entries)
+        {
+            avgSize+=entry.GetResponse().Length;
+            count++;
+        }
+        avgSize/=count;
+        // Returns a multiline string with that information.
+        return 
+        $"""
+        {_filename} Statistics:
+        Number of Entries: {_entries.Count}
+        Average entries per day: {Math.Round(eavg,2)}
+        Average entry size: {avgSize} characters
+        """;
+    }
 }
