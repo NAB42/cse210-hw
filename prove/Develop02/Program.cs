@@ -54,6 +54,10 @@ class Program
                 // responds with with their new entry. It is then added to the 
                 // Journal.
                 Entry entry = new Entry(date);
+                foreach(string i in entry.GetPrompts())
+                {
+                    Console.WriteLine(i);
+                }
                 entry.DisplayPrompt();
                 journal.AddEntry(entry);
                 Console.WriteLine("Added to Journal.");
@@ -70,6 +74,12 @@ class Program
                 journal.LoadJournal(Console.ReadLine());
 
             }
+            /* else if (cont == "6")
+            {
+                Entry entry = new Entry(date);
+                Console.Write("Enter new prompt: \n>");
+                entry.AddPrompt(Console.ReadLine());
+            } */
             Console.WriteLine(
             """
 
