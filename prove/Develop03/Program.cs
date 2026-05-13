@@ -4,8 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop03 World!");
-        Scripture s = new Scripture(new Reference("Malachi",4,4));
-        Console.WriteLine(s.DisplayRef().ToString());
+        Console.Write("Enter a scripture:\n> ") ;
+        Reference r = new Reference(Console.ReadLine());
+        Console.WriteLine("Book is " +r.GetName());
+        Console.WriteLine("Chatper is "+r.getChapter());
+        Console.WriteLine("Verses are "+r.GetVerses());
     }
 }

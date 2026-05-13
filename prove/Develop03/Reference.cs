@@ -1,24 +1,54 @@
+using System.Text.RegularExpressions;
 class Reference
 {
     private string _name;
     private int _chapter;
-    private int _verse;
+    private string _verse;
 
     public Reference()
     {
         _name="Genesis";
         _chapter=1;
-        _verse=1;
+        _verse="1";
     }
-    public Reference(string name,int chapter,int verse)
+    public Reference(string name,int chapter,string verse)
     {
         _name=name;
         _chapter=chapter;
         _verse=verse;
     }
+    public Reference(string reference)
+    {
+        this.CreateReference(reference);
+    }
 
     public override string ToString()
     {
         return $"{_name} {_chapter}:{_verse}";
+    }
+
+    public string CreateReference(string reference)
+    {
+        string pattern = "[0-9-]*$";
+        _verse = Regex.Match(reference,pattern).Value;
+        reference = reference.Remove(reference.Length-(_verse.Length+1));
+        pattern = "[0-9]*$";
+        string newChapter = Regex.Match(reference,pattern).Value;
+        _chapter = int.Parse(newChapter);
+        reference = reference.Remove(reference.Length-(newChapter.Length+1));
+        _name = reference;
+        return this.ToString();
+    }
+    public string GetName()
+    {
+        return _name;
+    }
+    public int getChapter()
+    {
+        return _chapter;
+    }
+    public string GetVerses()
+    {
+        return _verse;
     }
 }
