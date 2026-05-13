@@ -1,10 +1,7 @@
 // By Nate Boulton
 // The Journal Project is a simple program that stores journal entries in a file for the user.
 // Its purpose is to encourage people to write in their journal, and to focus it on the Lord and 
-// on the positive aspects. It has a chance to ask one of 3 main questions:
-// 1. Something cool that happened today
-// 2. Something the user is grateful for
-// 3. How the user has seen the hand of the Lord in their life.
+// on the positive aspects. It has a chance to ask a random prompt, and the user has to respond.
 // 
 // This is part of the "Programming with Classes" curriculum that I am currently in. 
 // It dives into file processing, use of classes and objects, abstraction, and method calling.

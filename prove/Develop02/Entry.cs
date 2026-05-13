@@ -1,11 +1,11 @@
 // By Nate Boulton
 // The Entry object holds information on the date, prompt, and response from 
 // the user. In this class this object's attributes and methods are described.
-// An yes, I know this has terrible design redundancy. Don't judge me for being too lazy.
 public class Entry
 {
     /* Attributes */
 
+    // This is the different possible prompts that could be used.
     private List<string> _prompts = new List<string>
                     {
                         "How have I seen the hand of the Lord in my life today?",
@@ -18,6 +18,7 @@ public class Entry
     // private string _promptFilename = "prompts.csv";
     private string _date;
     private string _response;
+    // For referencing which prompt. It's better for storage and the such.
     private int _count;
 
 
@@ -39,8 +40,6 @@ public class Entry
 
     /* Methods */
 
-
-
     // Converts the Entry into a CSV friendly string that can be processed.
     public string toCSV()
     {
@@ -57,7 +56,6 @@ public class Entry
     // enter in their response.
     public void DisplayPrompt()
     {
-
         _count = new Random().Next(0,_prompts.Count);
         Console.WriteLine(_prompts.Count);
         Console.Write(_date+": ");
@@ -86,6 +84,7 @@ public class Entry
         _response = _response.Replace(',','\u001B');
     }
     
+    // Methods to access the encapsulated fields
     public List<string> GetPrompts()
     {
         return _prompts;

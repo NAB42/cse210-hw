@@ -114,7 +114,9 @@ class Journal
     }
 
     // Ok so this finds 3 statistics to display, to help the journaler
-    // focus on improving or see their progress.
+    // focus on improving or see their progress. The purpose of this whole 
+    // program is to help people to journal more. This allows them to see 
+    // Actual data.
     public string GetStats()
     {
         // This section deals with determining the number of entries per day.
