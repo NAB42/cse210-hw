@@ -19,7 +19,7 @@ class Program
         string date = DateOnly.FromDateTime(DateTime.Now).ToString();
 
         // Variable to determine if the user wants to continue
-        string cont="";
+        string cont = "";
 
 
         // Prompts user for the filename and constructs the file.
@@ -51,14 +51,14 @@ class Program
                 // responds with with their new entry. It is then added to the 
                 // Journal.
                 Entry entry = new Entry(date);
-                foreach(string i in entry.GetPrompts())
+                foreach (string i in entry.GetPrompts())
                 {
                     Console.WriteLine(i);
                 }
                 entry.DisplayPrompt();
                 journal.AddEntry(entry);
                 Console.WriteLine("Added to Journal.");
-                
+
             }
             else if (cont == "4")
             {
@@ -74,7 +74,7 @@ class Program
             else if (cont == "6")
             {
                 Console.WriteLine(journal.GetStats());
-            } 
+            }
             Console.WriteLine(
             """
 
@@ -88,8 +88,8 @@ class Program
             7. Quit
 
             """);
-            cont=Console.ReadLine();
-            
+            cont = Console.ReadLine();
+
         }
         // Write the changes to the journal.csv file.
         journal.WriteAll();

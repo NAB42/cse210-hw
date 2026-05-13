@@ -23,7 +23,7 @@ public class Entry
 
 
     /* Constructors */
-    public Entry(string date,int count,string response)
+    public Entry(string date, int count, string response)
     {
         _date = date;
         _count = count;
@@ -56,11 +56,11 @@ public class Entry
     // enter in their response.
     public void DisplayPrompt()
     {
-        _count = new Random().Next(0,_prompts.Count);
+        _count = new Random().Next(0, _prompts.Count);
         Console.WriteLine(_prompts.Count);
-        Console.Write(_date+": ");
-        Console.Write(_prompts[_count]+"\n>");
-        string response = Console.ReadLine(); 
+        Console.Write(_date + ": ");
+        Console.Write(_prompts[_count] + "\n>");
+        string response = Console.ReadLine();
 
         // This part right here takes into account the fact that CSV files use commas
         // to separate values. That's no good if the user wants to enter in a comma in 
@@ -68,22 +68,22 @@ public class Entry
         // 0x01B, which is [ESC] or something like that, which the user would probably 
         // never enter. When the file is processed later in the Journal object, it turns
         // the [ESC]s back into commas. 
-        _response = response.Replace(',','\u001B');
+        _response = response.Replace(',', '\u001B');
     }
 
     // Allows the response to be set. 
     public void SetResponse(string response)
     {
-        _response=response;
+        _response = response;
     }
 
     // This method also replaces the commas with ASCII 0x01B, but is on its own for when
     // the Journal object needs to rewrite all of the entries back into the file.
     public void FixCommas()
     {
-        _response = _response.Replace(',','\u001B');
+        _response = _response.Replace(',', '\u001B');
     }
-    
+
     // Methods to access the encapsulated fields
     public List<string> GetPrompts()
     {
@@ -95,7 +95,7 @@ public class Entry
     }
     public DateTime GetDate()
     {
-        DateTime.TryParse(_date,out DateTime result);
+        DateTime.TryParse(_date, out DateTime result);
         return result;
     }
 }
@@ -116,67 +116,34 @@ public class Entry
 
 
 
-    // The forgotten. It got too messy
+// The forgotten. It got too messy
 
-    /* public void LoadPrompts()
-    {
-        _prompts = new List<string>{""};
-        
-            try{
-                
-                using(StreamReader reader = new StreamReader(_promptFilename))
-                {
-                    int lineCount = File.ReadLines(_promptFilename).Count();
-                    for (int i = 0; i <= lineCount; i++)
-                    {
-                        string csvLine = reader.ReadLine();
-                        if(csvLine!="\n"){
-                            _prompts.Add(csvLine);
-                            Console.WriteLine("Test");
-                        }
-                        else
-                        {
-                            Console.WriteLine("egiub");
-                        }
-                        Console.WriteLine("This o2egnoiregrere");
-                    }
-                }
-                if (_prompts.Count == 0)
-                {
-                    _prompts = new List<string>
-                    {
-                        "How have I seen the hand of the Lord in my life today?",
-                        "What is something cool that happened today?",
-                        "What is something I am grateful for?",
-                        "If I had one thing I could do over today, what would it be?",
-                        "What am I looking forward to tomorrow?",
-                        "What was the strongest emotion I felt today?"
-                    };
-                    Console.WriteLine("Test 1");
-                }
-            }
-            catch (NullReferenceException)
+/* public void LoadPrompts()
+{
+    _prompts = new List<string>{""};
+
+        try{
+
+            using(StreamReader reader = new StreamReader(_promptFilename))
             {
-                Console.WriteLine("This exception was hit");
-                if(new FileInfo(_promptFilename).Length == 0)
+                int lineCount = File.ReadLines(_promptFilename).Count();
+                for (int i = 0; i <= lineCount; i++)
                 {
-                    _prompts = new List<string>
+                    string csvLine = reader.ReadLine();
+                    if(csvLine!="\n"){
+                        _prompts.Add(csvLine);
+                        Console.WriteLine("Test");
+                    }
+                    else
                     {
-                        "How have I seen the hand of the Lord in my life today?",
-                        "What is something cool that happened today?",
-                        "What is something I am grateful for?",
-                        "If I had one thing I could do over today, what would it be?",
-                        "What am I looking forward to tomorrow?",
-                        "What was the strongest emotion I felt today?"
-                    };
+                        Console.WriteLine("egiub");
+                    }
+                    Console.WriteLine("This o2egnoiregrere");
                 }
-                
             }
-        
-        catch (FileNotFoundException)
-        {
-             using(File.Create(_promptFilename)){}
-             _prompts = new List<string>
+            if (_prompts.Count == 0)
+            {
+                _prompts = new List<string>
                 {
                     "How have I seen the hand of the Lord in my life today?",
                     "What is something cool that happened today?",
@@ -185,10 +152,43 @@ public class Entry
                     "What am I looking forward to tomorrow?",
                     "What was the strongest emotion I felt today?"
                 };
-            
+                Console.WriteLine("Test 1");
+            }
         }
+        catch (NullReferenceException)
+        {
+            Console.WriteLine("This exception was hit");
+            if(new FileInfo(_promptFilename).Length == 0)
+            {
+                _prompts = new List<string>
+                {
+                    "How have I seen the hand of the Lord in my life today?",
+                    "What is something cool that happened today?",
+                    "What is something I am grateful for?",
+                    "If I had one thing I could do over today, what would it be?",
+                    "What am I looking forward to tomorrow?",
+                    "What was the strongest emotion I felt today?"
+                };
+            }
+
+        }
+
+    catch (FileNotFoundException)
+    {
+         using(File.Create(_promptFilename)){}
+         _prompts = new List<string>
+            {
+                "How have I seen the hand of the Lord in my life today?",
+                "What is something cool that happened today?",
+                "What is something I am grateful for?",
+                "If I had one thing I could do over today, what would it be?",
+                "What am I looking forward to tomorrow?",
+                "What was the strongest emotion I felt today?"
+            };
+
     }
- */
+}
+*/
 
 /* public void AddPrompt(string prompt)
     {

@@ -22,9 +22,10 @@ class Journal
     public void LoadJournal(string filename)
     {
         _entries.Clear();
-        _filename=filename;
-        try{
-            using(StreamReader reader = new StreamReader(filename))
+        _filename = filename;
+        try
+        {
+            using (StreamReader reader = new StreamReader(filename))
             {
                 try
                 {
@@ -35,33 +36,33 @@ class Journal
                     for (int i = 0; i <= lineCount; i++)
                     {
                         string csvLine = reader.ReadLine();
-                        string[] entry = csvLine.Split(","); 
+                        string[] entry = csvLine.Split(",");
                         // Because CSV files are comma separated, this takes it into account.
                         // Refer to the Entry class for more info.
-                        string fixedResponse = entry[2].Replace("\u001B",",");
+                        string fixedResponse = entry[2].Replace("\u001B", ",");
                         // Adds the Entry to the List.
-                        _entries.Add(new Entry(entry[0],int.Parse(entry[1]),fixedResponse));
+                        _entries.Add(new Entry(entry[0], int.Parse(entry[1]), fixedResponse));
                     }
-                    
+
                 }
                 // This accounts for the lack of a journal. Obviously if the file is empty
                 // nothing can be loaded in, so it sets the _exists attribute to false.
                 catch (NullReferenceException)
                 {
-                _exists = !true; 
+                    _exists = !true;
                 }
 
                 // This accounts for any extra lines in the CSV file. It just keeps 
                 // going as if nothing happened.
-                catch (IndexOutOfRangeException){}
+                catch (IndexOutOfRangeException) { }
             }
         }
 
         // If the file doesn't exist, it is created.
-        catch (FileNotFoundException) 
+        catch (FileNotFoundException)
         {
-            using(File.Create(filename)){}
-            _exists=!true;
+            using (File.Create(filename)) { }
+            _exists = !true;
         }
     }
 
@@ -110,7 +111,7 @@ class Journal
     // The -1 accounts for the index offset that arrays have.
     public string GetRecent()
     {
-        return _entries[_entries.Count-1].GetEntry();
+        return _entries[_entries.Count - 1].GetEntry();
     }
 
     // Ok so this finds 3 statistics to display, to help the journaler
@@ -121,22 +122,22 @@ class Journal
     {
         // This section deals with determining the number of entries per day.
         DateTime firstDay = _entries[0].GetDate();
-        DateTime lastDay = _entries[_entries.Count-1].GetDate();
-        double eavg = _entries.Count/(lastDay-firstDay).TotalDays;
+        DateTime lastDay = _entries[_entries.Count - 1].GetDate();
+        double eavg = _entries.Count / (lastDay - firstDay).TotalDays;
         // This finds the average size of the entries, to see how much they are writing.
-        int avgSize=0;int count=0;
+        int avgSize = 0; int count = 0;
         foreach (Entry entry in _entries)
         {
-            avgSize+=entry.GetResponse().Length;
+            avgSize += entry.GetResponse().Length;
             count++;
         }
-        avgSize/=count;
+        avgSize /= count;
         // Returns a multiline string with that information.
-        return 
+        return
         $"""
         {_filename} Statistics:
         Number of Entries: {_entries.Count}
-        Average entries per day: {Math.Round(eavg,2)}
+        Average entries per day: {Math.Round(eavg, 2)}
         Average entry size: {avgSize} characters
         """;
     }
