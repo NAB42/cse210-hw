@@ -9,5 +9,9 @@ class Program
         Console.WriteLine("Book is " +r.GetName());
         Console.WriteLine("Chatper is "+r.getChapter());
         Console.WriteLine("Verses are "+r.GetVerses());
+        using (StreamReader reader = new StreamReader("book-of-mormon.json"))
+        {
+            
+        }
     }
 }
