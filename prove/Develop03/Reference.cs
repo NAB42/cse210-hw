@@ -1,19 +1,19 @@
 using System.Text.RegularExpressions;
 class Reference
 {
-    private string _name;
+    private string _book;
     private int _chapter;
     private string _verse;
 
     public Reference()
     {
-        _name="Genesis";
+        _book="Genesis";
         _chapter=1;
         _verse="1";
     }
     public Reference(string name,int chapter,string verse)
     {
-        _name=name;
+        _book=name;
         _chapter=chapter;
         _verse=verse;
     }
@@ -24,7 +24,7 @@ class Reference
 
     public override string ToString()
     {
-        return $"{_name} {_chapter}:{_verse}";
+        return $"{_book} {_chapter}:{_verse}";
     }
 
     public string CreateReference(string reference)
@@ -36,12 +36,12 @@ class Reference
         string newChapter = Regex.Match(reference,pattern).Value;
         _chapter = int.Parse(newChapter);
         reference = reference.Remove(reference.Length-(newChapter.Length+1));
-        _name = reference;
+        _book = reference;
         return this.ToString();
     }
     public string GetName()
     {
-        return _name;
+        return _book;
     }
     public int getChapter()
     {
