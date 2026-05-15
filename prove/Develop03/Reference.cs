@@ -63,14 +63,9 @@ class Reference
         }
         else
         {
-            //Console.WriteLine(_verse);
             Match match = Regex.Match(_verse,@"(\d+)-(\d+)");
-            //Console.WriteLine(match.Groups[0].Value);
             int start = int.Parse(match.Groups[1].Value);
-            //Console.WriteLine(match.ToString());
-            Console.WriteLine("Start: "+start);
             int end = int.Parse(match.Groups[2].Value);
-            Console.WriteLine("End: "+end);
             List<int> list = new List<int>();
             for (int i = start; i <= end; i++)
             {

@@ -2,8 +2,8 @@ using System.Text.RegularExpressions;
 
 class Word
 {
-    string _word;
-    bool _hidden;
+    private string _word;
+    private bool _hidden;
 
     public Word(string word)
     {
