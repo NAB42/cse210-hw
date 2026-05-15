@@ -20,10 +20,21 @@ class Program
                 """
             );
             int index = int.Parse(Console.ReadLine());
-            Console.Write("❯ ");
-            Scripture s = new Scripture(Console.ReadLine(),index);
-            s.Write();
-            Console.ReadLine();
+            Console.Write("Enter a scripture reference:\n❯ ");
+            Scripture scrip = new Scripture(Console.ReadLine(),index);
+            Console.Clear();
+            while(true){
+                scrip.Write();
+                Console.Write("\nq to quit, enter to hide more:\n❯ ");
+                string answer = Console.ReadLine();
+                if(answer == "q" || answer == "quit")
+                    break;
+                scrip.HideSome();
+                Console.Clear();
+            }
+            Console.Write("Press q to quit, or enter to go back to start:\n❯ ");
+            if(Console.ReadLine()=="q")
+                break;
             Console.Clear();
         }
     }

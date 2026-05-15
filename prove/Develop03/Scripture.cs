@@ -49,9 +49,21 @@ class Scripture
     }
     public void Write()
     {
+        Console.WriteLine(_reference.ToString());
         foreach(Word w in _text)
         {
             Console.Write(w.Get());
+        }
+    }
+    public void HideSome()
+    {
+        Random rnd = new Random();
+        foreach(Word w in _text)
+        {
+            if (rnd.Next(0, 3)==1)
+            {
+                w.Hide();
+            }
         }
     }
 }
