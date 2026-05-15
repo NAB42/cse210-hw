@@ -55,15 +55,42 @@ class Scripture
             Console.Write(w.Get());
         }
     }
-    public void HideSome()
+    public bool HideSome()
     {
         Random rnd = new Random();
+        bool isHidden=true;
         foreach(Word w in _text)
         {
             if (rnd.Next(0, 3)==1)
-            {
                 w.Hide();
-            }
+            if(!w.IsHidden())
+                isHidden=false;
         }
+        return isHidden;
+    }
+    public void Reset()
+    {
+        foreach(Word w in _text)
+        {
+            if(w.IsHidden())
+                w.Toggle();
+        }
+    }
+    public bool Test()
+    {
+        this.Reset();
+        string[] fullScripture = this.ToString().Trim().Split("\n");
+        int count=0;
+        bool passed = false;
+        foreach(string verse in fullScripture)
+        {
+            Console.Write($"Verse {_reference.GetVerseList()[count]}:\n❯ ");
+            if(Console.ReadLine() == verse)
+                passed=true;
+            else
+                passed=false;
+            count++;
+        }
+        return passed;
     }
 }

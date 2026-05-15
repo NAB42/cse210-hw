@@ -23,4 +23,8 @@ class Word
     {
         return _hidden ? Regex.Replace(_word,"."," ") : _word;
     }
+    public bool IsHidden()
+    {
+        return _hidden;
+    }
 }

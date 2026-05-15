@@ -29,7 +29,32 @@ class Program
                 string answer = Console.ReadLine();
                 if(answer == "q" || answer == "quit")
                     break;
-                scrip.HideSome();
+                bool allGone = scrip.HideSome();
+                if (allGone)
+                {
+                    Console.Clear();
+                    Console.WriteLine("All of the words are gone! Time for the test!");
+                    bool passed = scrip.Test();
+                    if (passed)
+                    {
+                        Console.WriteLine("You did it! Press enter to continue.");
+                        Console.ReadLine();
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write("You failed. Would you like to retry (y/n)?\n❯ ");
+                        string check = Console.ReadLine();
+                        if (check == "y")
+                        {
+                            scrip.Reset();
+                            Console.Clear();
+                            continue;
+                        }
+                        else 
+                            break;
+                    }
+                }
                 Console.Clear();
             }
             Console.Write("Press q to quit, or enter to go back to start:\n❯ ");
