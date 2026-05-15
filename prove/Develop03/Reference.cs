@@ -43,12 +43,40 @@ class Reference
     {
         return _book;
     }
-    public int getChapter()
+    public int GetChapter()
     {
         return _chapter;
     }
     public string GetVerses()
     {
         return _verse;
+    }
+    public string GetEmptyVerseRef()
+    {
+        return $"{_book} {_chapter}:";
+    }
+    public List<int> GetVerseList()
+    {
+        if(int.TryParse(_verse,out int verse))
+        {
+            return new List<int>{verse};
+        }
+        else
+        {
+            //Console.WriteLine(_verse);
+            Match match = Regex.Match(_verse,@"(\d+)-(\d+)");
+            //Console.WriteLine(match.Groups[0].Value);
+            int start = int.Parse(match.Groups[1].Value);
+            //Console.WriteLine(match.ToString());
+            Console.WriteLine("Start: "+start);
+            int end = int.Parse(match.Groups[2].Value);
+            Console.WriteLine("End: "+end);
+            List<int> list = new List<int>();
+            for (int i = start; i <= end; i++)
+            {
+                list.Add(i);
+            }
+            return list;
+        }
     }
 }
