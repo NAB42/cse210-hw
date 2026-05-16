@@ -17,7 +17,8 @@ public class Program
     {
         Console.Clear();
         Console.WriteLine("Welcome to the Scripture Memorizer!");
-        while(true){
+        while (true)
+        {
             Console.Write(
                 """
                 Pick a book from the standard works (1-5):
@@ -32,15 +33,16 @@ public class Program
             // Gets the index for which book to use
             int index = int.Parse(Console.ReadLine());
             Console.Write("Enter a scripture reference:\n❯ ");
-            Scripture scrip = new Scripture(Console.ReadLine(),index);
+            Scripture scrip = new Scripture(Console.ReadLine(), index);
             Console.Clear();
 
             // This is the loop for memorizing the verses.
-            while(true){
+            while (true)
+            {
                 scrip.Write();
                 Console.Write("\nq to quit, enter to hide more:\n❯ ");
                 string answer = Console.ReadLine();
-                if(answer == "q")
+                if (answer == "q")
                     break;
                 // Hides some of the words, and checks if they're all gone.
                 bool allGone = scrip.HideSome();
@@ -66,14 +68,14 @@ public class Program
                             Console.Clear();
                             continue;
                         }
-                        else 
+                        else
                             break;
                     }
                 }
                 Console.Clear();
             }
             Console.Write("Press q to quit, or enter to go back to start:\n❯ ");
-            if(Console.ReadLine()=="q")
+            if (Console.ReadLine() == "q")
                 break;
             Console.Clear();
         }

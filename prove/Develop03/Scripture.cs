@@ -14,7 +14,7 @@ public class Scripture
 
 
     /* Constructors */
-    public Scripture(string reference,int index)
+    public Scripture(string reference, int index)
     {
         // This is the list of JSON files. There are 5 of them.
         string[] books =
@@ -30,15 +30,16 @@ public class Scripture
         // Opens up the file that corresponds with what the user chooses.
         // 'index' - 1 is to convert from user-friendly counting to computer 
         // indexing.
-        using (StreamReader reader = new StreamReader(books[index-1]))
+        using (StreamReader reader = new StreamReader(books[index - 1]))
         {
             // JSON conversion
             Book scrip = JsonSerializer.Deserialize<Book>(reader.ReadToEnd());
-            foreach(Verse verse in scrip.verses)
+            foreach (Verse verse in scrip.verses)
             {
                 // Adds the text for each verse using the GetVerseList() method
-                foreach(int i in _reference.GetVerseList()){
-                    if(verse.reference == $"{_reference.GetEmptyVerseRef()}{i}")
+                foreach (int i in _reference.GetVerseList())
+                {
+                    if (verse.reference == $"{_reference.GetEmptyVerseRef()}{i}")
                         ParseText(verse.text);
                 }
             }
@@ -68,7 +69,7 @@ public class Scripture
     public override string ToString()
     {
         string ret = "";
-        foreach(Word word in _text)
+        foreach (Word word in _text)
         {
             ret += word.Get();
         }
@@ -79,7 +80,7 @@ public class Scripture
     public void Write()
     {
         Console.WriteLine(_reference.ToString());
-        foreach(Word word in _text)
+        foreach (Word word in _text)
         {
             Console.Write(word.Get());
         }
@@ -91,15 +92,15 @@ public class Scripture
     public bool HideSome()
     {
         Random rnd = new Random();
-        bool isHidden=true;
-        foreach(Word word in _text)
+        bool isHidden = true;
+        foreach (Word word in _text)
         {
             // Right now it's a 1 in 3 chance. One day I'll make it customizable
             // by the user in a config menu maybe.
-            if (rnd.Next(0, 3)==1)
+            if (rnd.Next(0, 3) == 1)
                 word.Hide();
-            if(!word.IsHidden())
-                isHidden=false;
+            if (!word.IsHidden())
+                isHidden = false;
         }
         return isHidden;
     }
@@ -107,9 +108,9 @@ public class Scripture
     // Resets the word. If there's any hidden words they are unhidden.
     public void Reset()
     {
-        foreach(Word word in _text)
+        foreach (Word word in _text)
         {
-            if(word.IsHidden())
+            if (word.IsHidden())
                 word.Toggle();
         }
     }
@@ -121,16 +122,16 @@ public class Scripture
         // Splits the verses
         // Also trims the newline or space off of the end so the user doesn't get instafailed
         string[] fullScripture = this.ToString().Trim().Split("\n");
-        int count=0;
+        int count = 0;
         bool passed = false;
-        foreach(string verse in fullScripture)
+        foreach (string verse in fullScripture)
         {
             // Writes out the verse number, then checks if the response matches the verse.
             Console.Write($"Verse {_reference.GetVerseList()[count]}:\n❯ ");
-            if(Console.ReadLine() == verse)
-                passed=true;
+            if (Console.ReadLine() == verse)
+                passed = true;
             else
-                passed=false;
+                passed = false;
             count++;
         }
         return passed;

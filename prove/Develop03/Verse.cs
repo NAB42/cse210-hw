@@ -9,13 +9,13 @@ public class Verse
 {
     // Both reference and text are given getters and setters for the 
     // Deserializer.
-    public string reference {get;set;}
-    public string text{get;set;}
+    public string reference { get; set; }
+    public string text { get; set; }
 
 }
 
 public class Book
 {
     // Same here.
-    public List<Verse> verses{get;set;}
+    public List<Verse> verses { get; set; }
 }
