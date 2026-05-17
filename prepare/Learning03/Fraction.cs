@@ -1,5 +1,6 @@
-using System.Net.NetworkInformation;
-
+/* 2025.05.16 Nathan Boulton
+ * I'm too lazy to comment this more than I have. It's super simple.
+ */
 public class Fraction
 {
     /* Attributes */
@@ -11,13 +12,10 @@ public class Fraction
         _numerator=num;
         _denominator=denom;
     }
-    public Fraction(int num)
-    {
-        new Fraction(num,1);
-    }
     public Fraction()
     {
-        new Fraction(1,2);
+        _numerator=1;
+        _denominator=2;
     }
     
     /* Methods */
@@ -29,6 +27,8 @@ public class Fraction
     {
         return _denominator;
     }
+
+    // If it's an improper fraction it will put the whole number in front.
     public string ProperFraction()
     {
         if (_numerator < _denominator)
@@ -42,6 +42,10 @@ public class Fraction
         if (_numerator%_denominator == 0)
             return $"{_numerator/_denominator}";
         return $"{_numerator}/{_denominator}";
+    }
+    public double GetDecimal()
+    {
+        return (double)_numerator/(double)_denominator;
     }
 
     public void SetNumerator(int num)

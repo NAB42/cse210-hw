@@ -1,3 +1,4 @@
+/* 2026.05.15 Nathan Boulton; */
 using System;
 
 class Program
@@ -5,11 +6,16 @@ class Program
     static void Main(string[] args)
     {
         Fraction f = new Fraction();
-        Console.Write("Numerator: ");
-        f.SetNumerator(int.Parse(Console.ReadLine()));
-        Console.Write("Denominator: ");
-        f.SetDenominator(int.Parse(Console.ReadLine()));
-        Console.WriteLine(f.ProperFraction());
-        Console.WriteLine(f.ImproperFraction());
+        Random rnd = new Random();
+        // Makes 20 random fractions and displays them
+        for(int i=1;i<=20;i++){
+            f.SetNumerator(rnd.Next(1,20));
+            f.SetDenominator(rnd.Next(1,20));
+            Console.WriteLine($"Fraction {i}:");
+            Console.WriteLine(f.ProperFraction());
+            Console.WriteLine(f.ImproperFraction());
+            Console.WriteLine(f.GetDecimal());
+            Console.WriteLine();
+        }
     }
 }
