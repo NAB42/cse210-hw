@@ -58,7 +58,7 @@ public class Scripture
         {
             // Make the strings into Word objects, add spaces back.
             _text.Add(new Word(word));
-            _text.Add(new Word(" "));
+            //_text.Add(new Word(" "));
         }
         // Add a newline to separate the verses.
         _text.Add(new Word("\n"));
@@ -72,6 +72,7 @@ public class Scripture
         foreach (Word word in _text)
         {
             ret += word.Get();
+            ret += " ";
         }
         return ret;
     }
@@ -83,6 +84,7 @@ public class Scripture
         foreach (Word word in _text)
         {
             Console.Write(word.Get());
+            Console.Write(" ");
         }
     }
 
@@ -93,15 +95,19 @@ public class Scripture
     {
         Random rnd = new Random();
         bool isHidden = true;
+        int count = 0; // For testing
         foreach (Word word in _text)
         {
             // Right now it's a 1 in 3 chance. One day I'll make it customizable
             // by the user in a config menu maybe.
             if (rnd.Next(0, 3) == 1)
                 word.Hide();
-            if (!word.IsHidden())
+            if (!word.IsHidden()){
                 isHidden = false;
+                count++;
+            }
         }
+        // Console.WriteLine($"{count} words on the board");
         return isHidden;
     }
 
