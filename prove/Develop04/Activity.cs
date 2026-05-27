@@ -21,4 +21,9 @@ public class Activity
     {
         _duration=seconds;
     }
+	public void Begin(){
+		Console.Write("Welcome! Please enter the number of seconds you want this to last:\n> ");
+		int seconds = int.Parse(Console.ReadLine());
+		this.SetDuration(seconds);
+	}
 }
