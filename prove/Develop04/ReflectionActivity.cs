@@ -9,6 +9,9 @@ public class ReflectionActivity : Activity
 
 	public void Display()
 	{
+		this.Begin();
+		Console.WriteLine(this.ToString());
+		Thread.Sleep(2000);
 		List<string> prompts = 
 		new List<string>(){
 		 "Think of a time when you stood up for someone else.",
@@ -19,7 +22,10 @@ public class ReflectionActivity : Activity
 		int rand = new Random().Next(0,4);
 		Console.WriteLine(prompts[rand]);
 		Thread.Sleep(3000);
-		Console.Write("You will now be shown 8 different questions to reflect upon.");
+		Console.Write("You will now be shown 8 different questions to reflect upon. Press Enter to begin.");
+		Console.ReadLine();
+		DateTime start = DateTime.Now;
+		DateTime end = start.AddSeconds(this.GetDuration());
 		List<string> questions = 
 		new List<string>(){
 		 "Why was this experience meaningful to you?",
@@ -32,13 +38,19 @@ public class ReflectionActivity : Activity
 		 "What did you learn about yourself through this experience?",
 		 "How can you keep this experience in mind in the future?"
 		};
-		Thread.Sleep(3000);
+		//Thread.Sleep(3000);
 		foreach(string qs in questions)
 		{
 			Console.Clear();
 			Console.WriteLine(prompts[rand]);
 			Console.WriteLine(qs);
 			Thread.Sleep(5000);
+			if(end < DateTime.Now)
+			{
+				Console.WriteLine(end);Console.WriteLine(DateTime.Now);
+				break;
+			}
 		}
+		this.End();
 	}
 }

@@ -6,4 +6,27 @@ public class BreathingActivity : Activity
 	{
 		
 	}
+	public void Display()
+	{
+		this.Begin();
+		Console.WriteLine(this.ToString());
+		DateTime end = DateTime.Now.AddSeconds(this.GetDuration());
+		int count = 0;
+		while(end > DateTime.Now)
+		{
+			Console.Clear();
+			if(count % 2 == 0)
+				Console.WriteLine("Breath In...");
+			else 
+				Console.WriteLine("Breath Out...");
+			Thread.Sleep(700);
+			for(int i=0; i<3; i++){
+				Console.Write("# ");
+				Thread.Sleep(700);
+			}
+			count++;
+		}
+		Console.WriteLine();
+		this.End();
+	}
 }
