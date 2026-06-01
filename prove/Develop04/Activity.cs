@@ -13,6 +13,10 @@ public class Activity
     }
 
     /* Methods */
+	public string GetDescription()
+	{
+		return _description;
+	}
     public void SetDuration(int seconds)
     {
         _duration=seconds;

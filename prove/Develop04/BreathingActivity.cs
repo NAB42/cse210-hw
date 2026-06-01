@@ -19,7 +19,7 @@ public class BreathingActivity : Activity
 			else 
 				Console.WriteLine("Breath Out...");
 			Thread.Sleep(700);
-			for(int i=0; i<3; i++){
+			for(int i = 0; i < 3; i++){
 				Console.Write("# ");
 				Thread.Sleep(700);
 			}

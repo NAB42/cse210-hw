@@ -21,18 +21,19 @@ public class ListingActivity : Activity
 			"Who are some of your personal heroes?"
 		};
 		Console.WriteLine("Take a few seconds to think...");
-		for(int i=5;i>0;i--)
+		for(int i = 5; i > 0; i--)
 		{
 			Console.Write(i);
 			Console.Write("\b \b");
 		}
 		Console.WriteLine("Ok List as many as you can!");
 		List<string> answers = new List<string>();
-		while(DateTime.Now>end)
+		while(DateTime.Now < end)
 		{
 			Console.Write("> ");
 			answers.Add(Console.ReadLine());
 		}
+		Console.WriteLine($"Nice! You wrote {answers.Count} answers!");
 		this.End();
 	}
 }
