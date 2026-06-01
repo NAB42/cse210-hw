@@ -9,7 +9,6 @@ public class BreathingActivity : Activity
 	public void Display()
 	{
 		this.Begin();
-		Console.WriteLine(this.ToString());
 		DateTime end = DateTime.Now.AddSeconds(this.GetDuration());
 		int count = 0;
 		while(end > DateTime.Now)

@@ -10,7 +10,6 @@ public class ReflectionActivity : Activity
 	public void Display()
 	{
 		this.Begin();
-		Console.WriteLine(this.ToString());
 		Thread.Sleep(2000);
 		List<string> prompts = 
 		new List<string>(){
