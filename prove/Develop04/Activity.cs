@@ -17,6 +17,10 @@ public class Activity
 	{
 		return _description;
 	}
+	public string GetName()
+	{
+		return _name;
+	}
     public void SetDuration(int seconds)
     {
         _duration=seconds;

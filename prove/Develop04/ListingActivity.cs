@@ -24,6 +24,7 @@ public class ListingActivity : Activity
 		for(int i = 5; i > 0; i--)
 		{
 			Console.Write(i);
+			Thread.Sleep(1000);
 			Console.Write("\b \b");
 		}
 		Console.WriteLine("Ok List as many as you can!");
