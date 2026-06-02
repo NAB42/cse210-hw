@@ -46,7 +46,7 @@ public class ReflectionActivity : Activity
 			Thread.Sleep(5000);
 			if(end < DateTime.Now)
 			{
-				Console.WriteLine(end);Console.WriteLine(DateTime.Now);
+				//Console.WriteLine(end);Console.WriteLine(DateTime.Now);
 				break;
 			}
 		}
