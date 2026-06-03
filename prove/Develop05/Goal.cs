@@ -26,4 +26,5 @@ public abstract class Goal
 	// Abstract Methods
 	public abstract void Complete();
 	public abstract int CalculatePoints();
+	public abstract override string ToString();
 }

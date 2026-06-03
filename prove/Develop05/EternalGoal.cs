@@ -22,4 +22,8 @@ public class EternalGoal : Goal
 	{
 		return this.Points() * _timesCompleted;
 	}
+	public override string ToString()
+	{
+		return $"[{_timesCompleted}/∞] {this.Description()} ({this.Points()} points each)";
+	}
 } 

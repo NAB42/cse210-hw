@@ -8,7 +8,10 @@ public class User
 		try{
 			using (StreamReader reader = new StreamReader($"usr/{_name}"))
 			{
-				
+				for(int i = 0; i < 8; i++)
+				{
+					
+				}
 			}
 		}
 		catch (FileNotFoundException)

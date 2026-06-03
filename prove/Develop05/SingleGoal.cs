@@ -22,4 +22,9 @@ public class SingleGoal : Goal
 	{
 		return this.Points();
 	}
+	public override string ToString()
+	{
+		string done = _completed ? "X" : " ";
+		return $"[{done}] {Description()} ({Points()} Points)";
+	}
 }

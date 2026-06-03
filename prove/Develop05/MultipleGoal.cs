@@ -26,5 +26,9 @@ public class MultipleGoal : Goal
 			? this.Points() * _timesCompleted + (_timesCompleted - _threshold) * 10
 			: this.Points() * _timesCompleted;
 	}
+	public override string ToString()
+	{
+		return $"[{_timesCompleted}/{_threshold}] {Description()} ({Points} Points each)";
+	}
 
 }
