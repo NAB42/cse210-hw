@@ -1,0 +1,25 @@
+public class SingleGoal : Goal 
+{
+	private bool _completed;
+
+	public SingleGoal(string description, int points, bool done)
+	{
+		this.SetDescription(description);
+		this.SetPoints(points);
+		_completed = done;
+	}
+
+	public bool Completed()
+	{
+		return _completed;
+	}
+
+	public override void Complete()
+	{
+		_completed = true;
+	}
+	public override int CalculatePoints()
+	{
+		return this.Points();
+	}
+}

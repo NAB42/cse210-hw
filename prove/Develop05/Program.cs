@@ -1,9 +1,67 @@
 using System;
+using System.IO;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop05 World!");
+		string version = "1.0.0";
+		Console.Clear();
+		Console.WriteLine($"GoalQuest {version}");
+		Console.Write("login: ");
+		string user = Console.ReadLine();
+		Console.WriteLine("\nWelcome to GoalQuest!\n");
+		Console.ForegroundColor = ConsoleColor.DarkGreen;
+		Console.WriteLine(
+				"""
+				##################
+				####          ####
+				###   ######   ###
+				###  #############
+				###  #############
+				###  #####     ###
+				###   ######   ###
+				####          ####
+				##################
+				""");
+		Console.ResetColor();
+		Console.WriteLine($"\nversion {version}\n");
+		Console.WriteLine("type 'help' for a list of commands.\n");
+		string[] command;
+		do
+		{
+			Console.Write($"[{user}@goalquest ~]$ ");
+			command = Console.ReadLine().Split(" ");
+			switch (command[0])
+			{
+				case "ls":
+					Console.WriteLine("WIP :)");
+					break;
+				case "pwd":
+					Console.WriteLine("WIP :)");
+					break;
+				case "cd":
+					Console.WriteLine("WIP :)");
+					break;
+				case "cat":
+					Console.WriteLine("WIP :)");
+					break;
+				case "su":
+					Console.WriteLine("WIP :)");
+					break;
+				case "whoami":
+					Console.WriteLine(user);
+					break;
+				case "help":
+					Console.WriteLine(File.ReadAllText("help.txt"));
+					break;
+				case "exit":
+					return;
+				default:
+					Console.WriteLine($"eternash: {command[0]}: command not found.");
+					break;
+			}
+		}
+		while(true);
     }
 }
