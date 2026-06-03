@@ -4,6 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Learning05 World!");
+		List<Shape> s = new List<Shape>();
+		s.Add(new Rectangle(5.7,4.3));
+		s.Add(new Square(7.7));
+		s.Add(new Circle(13f));
+		foreach(Shape shapes in s)
+		{
+			Console.WriteLine(shapes.GetArea());
+		}
     }
 }
