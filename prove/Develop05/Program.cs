@@ -9,7 +9,7 @@ class Program
 		Console.Clear();
 		Console.WriteLine($"GoalQuest {version}");
 		Console.Write("login: ");
-		string user = Console.ReadLine();
+		User user = new User(Console.ReadLine());
 		Console.WriteLine("\nWelcome to GoalQuest!\n");
 		Console.ForegroundColor = ConsoleColor.DarkGreen;
 		Console.WriteLine(
@@ -32,16 +32,17 @@ class Program
 		{
 			Console.Write($"[{user}@goalquest ~]$ ");
 			command = Console.ReadLine().Split(" ");
+			Console.WriteLine();
 			switch (command[0])
 			{
 				case "ls":
-					Console.WriteLine("WIP :)");
+					user.List();
 					break;
 				case "pwd":
 					Console.WriteLine("WIP :)");
 					break;
 				case "cd":
-					Console.WriteLine("WIP :)");
+					user.CompletelyDone();
 					break;
 				case "cat":
 					Console.WriteLine("WIP :)");

@@ -28,7 +28,7 @@ public class MultipleGoal : Goal
 	}
 	public override string ToString()
 	{
-		return $"[{_timesCompleted}/{_threshold}] {Description()} ({Points} Points each)";
+		return $"[{_timesCompleted}/{_threshold}] {Description()} ({Points()} Points each)";
 	}
 
 }
