@@ -1,3 +1,9 @@
+/* 06.02.2026 Nathan Boulton
+ * This is the reflection activity. It asks meaningful questions to think about,
+ * based ona  randomized prompt. 
+ *
+ */
+
 public class ReflectionActivity : Activity 
 {
 	public ReflectionActivity() :
@@ -11,8 +17,9 @@ public class ReflectionActivity : Activity
 	{
 		this.Begin();
 		Thread.Sleep(2000);
-		List<string> prompts = 
-		new List<string>(){
+		// One of 4 possible prompts. Uses the Random object.
+		List<string> prompts = new List<string>()
+		{
 		 "Think of a time when you stood up for someone else.",
 		 "Think of a time when you did something really difficult.",
 		 "Think of a time when you helped someone in need.",
@@ -21,12 +28,13 @@ public class ReflectionActivity : Activity
 		int rand = new Random().Next(0,4);
 		Console.WriteLine(prompts[rand]);
 		Thread.Sleep(3000);
+		// Once they press enter, the duration timer starts.
 		Console.Write("You will now be shown 8 different questions to reflect upon. Press Enter to begin.");
 		Console.ReadLine();
 		DateTime start = DateTime.Now;
 		DateTime end = start.AddSeconds(this.GetDuration());
-		List<string> questions = 
-		new List<string>(){
+		List<string> questions = new List<string>()
+		{
 		 "Why was this experience meaningful to you?",
 		 "Have you ever done anything like this before?",
 		 "How did you get started?",
@@ -37,7 +45,7 @@ public class ReflectionActivity : Activity
 		 "What did you learn about yourself through this experience?",
 		 "How can you keep this experience in mind in the future?"
 		};
-		//Thread.Sleep(3000);
+		// Asks the questions one at a time, clearing the console each time.
 		foreach(string qs in questions)
 		{
 			Console.Clear();

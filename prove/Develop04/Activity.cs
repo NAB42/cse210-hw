@@ -1,3 +1,9 @@
+/* 06.02.2026 Nathan Boulton
+ * This is the parent Activity class. Never directly instantiated as an
+ * object, but instead used for its common attributes.
+ * Includes Begin and End methods that are the same for every activity.
+ */
+
 public class Activity
 {
     /* Attributes */
@@ -33,6 +39,8 @@ public class Activity
 	{
 		return $"Welcome to {_name}\n{_description}";
 	}
+
+	// This is where the input of duration happens.
 	public void Begin()
 	{
 		Console.Write("Welcome! Please enter the number of seconds you want this to last:\n> ");

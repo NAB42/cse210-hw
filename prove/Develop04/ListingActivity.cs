@@ -1,3 +1,10 @@
+/* 06.02.2026 Nathan Boulton
+ *
+ * This is the listing activity. The user receives a random prompt, and 
+ * then is given their chosen duration of time to list out everything that 
+ * comes to mind.
+ */
+
 public class ListingActivity : Activity 
 {
 	
@@ -11,6 +18,7 @@ public class ListingActivity : Activity
 	public void Display()
 	{
 		this.Begin();
+		// Figuring out the duration of the thing
 		DateTime end = DateTime.Now.AddSeconds(this.GetDuration());
 		List<string> prompts = new List<string>()
 		{
@@ -21,6 +29,7 @@ public class ListingActivity : Activity
 			"Who are some of your personal heroes?"
 		};
 		Console.WriteLine("Take a few seconds to think...");
+		// Animation
 		for(int i = 5; i > 0; i--)
 		{
 			Console.Write(i);
@@ -29,11 +38,13 @@ public class ListingActivity : Activity
 		}
 		Console.WriteLine("Ok List as many as you can!");
 		List<string> answers = new List<string>();
+		// List everything
 		while(DateTime.Now < end)
 		{
 			Console.Write("> ");
 			answers.Add(Console.ReadLine());
 		}
+		// Outputs number of answers given
 		Console.WriteLine($"Nice! You wrote {answers.Count} answers!");
 		this.End();
 	}

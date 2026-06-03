@@ -1,5 +1,11 @@
-using System;
-
+/* 06.02.2026 Nathan Boulton
+ * The purpose of this program is to help the user be more mindful.
+ * There are 4 different activities, all of which are intended to
+ * increase mindfulness. 
+ * Each option picked instantiates a different object, and then runs 
+ * through the Display() method for the determined duration. It then 
+ * logs it in the file log.txt.
+ */
 class Program
 {
     static void Main(string[] args)
@@ -16,7 +22,10 @@ class Program
 				""");
 		Console.Write("> ");
 		int answer = int.Parse(Console.ReadLine());
+		// For the logging
 		string fileput;
+
+		// This is the switch that determines which activity is going to be used. 
 		switch (answer)
 		{
 			case 1:
@@ -45,12 +54,15 @@ class Program
 				return;
 
 		}
-
+		
+		// File Processing. This program logs each time the user runs it with a date, activity, and duration.
 		string currentLog = "";
+		// Reads the whole file into a string
 		using(StreamReader str = new StreamReader("log.txt"))
 		{
 			currentLog += str.ReadLine();
 		}
+		// Then adds the new activity to the log.
 		using (StreamWriter str = new StreamWriter("log.txt"))
 		{
 			str.WriteLine(currentLog + "\n" + fileput);
