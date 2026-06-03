@@ -27,4 +27,8 @@ public class SingleGoal : Goal
 		string done = _completed ? "X" : " ";
 		return $"[{done}] {Description()} ({Points()} Points)";
 	}
+	public override string Stat()
+	{
+		return _completed.ToString().ToLower();
+	}
 }

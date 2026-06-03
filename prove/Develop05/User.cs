@@ -5,6 +5,15 @@ public class User
 	public User(string name)
 	{
 		_name = name;
+		ReadGoals();
+		
+	}
+	public string Name()
+	{
+		return _name;
+	}
+	public void ReadGoals()
+	{
 		try{
 			using (StreamReader reader = new StreamReader($"usr/{_name}.gq"))
 			{
@@ -28,7 +37,7 @@ public class User
 
 	public void List()
 	{
-		Console.WriteLine("GOAL PROGRESS:\n");
+		Console.WriteLine("\nGOAL PROGRESS:\n");
 		foreach(Goal goal in _goals)
 		{
 			Console.WriteLine(goal.ToString());
@@ -36,8 +45,32 @@ public class User
 		Console.WriteLine();
 	}
 
+	public void PrintPoints()
+	{
+		int points = 0;
+		foreach(Goal goal in _goals)
+		{
+			points += goal.CalculatePoints();
+		}
+		Console.WriteLine($"Total points: {points}");
+		Console.WriteLine("Rank is a WIP :)\n");
+	}
+
 	public void CompletelyDone()
 	{
 		Console.WriteLine("TODO");
+	}
+
+	public void SaveGoals()
+	{
+		using(StreamWriter writer = new StreamWriter($"usr/{_name}.gq"))
+		{
+			string completions = "";
+			foreach(Goal goal in _goals)
+			{
+				completions += goal.Stat() + " ";
+			}
+			writer.WriteLine(completions.TrimEnd());
+		}
 	}
 }

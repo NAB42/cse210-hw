@@ -30,16 +30,15 @@ class Program
 		string[] command;
 		do
 		{
-			Console.Write($"[{user}@goalquest ~]$ ");
+			Console.Write($"[{user.Name()}@goalquest ~]$ ");
 			command = Console.ReadLine().Split(" ");
-			Console.WriteLine();
 			switch (command[0])
 			{
 				case "ls":
 					user.List();
 					break;
 				case "pwd":
-					Console.WriteLine("WIP :)");
+					user.PrintPoints();
 					break;
 				case "cd":
 					user.CompletelyDone();
@@ -51,12 +50,13 @@ class Program
 					Console.WriteLine("WIP :)");
 					break;
 				case "whoami":
-					Console.WriteLine(user);
+					Console.WriteLine(user.Name());
 					break;
 				case "help":
 					Console.WriteLine(File.ReadAllText("help.txt"));
 					break;
 				case "exit":
+					user.SaveGoals();
 					return;
 				default:
 					Console.WriteLine($"eternash: {command[0]}: command not found.");

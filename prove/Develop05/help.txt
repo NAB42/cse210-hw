@@ -4,7 +4,7 @@ List of Commands:
 
     pwd                  prints # of points accumulated on this user, and their rank
 
-    cd [Name of Goal]    marks goal as "Completely Done"
+    cd				     marks goal as "Completely Done"
 
     cat                  displays the standings among all users.
 

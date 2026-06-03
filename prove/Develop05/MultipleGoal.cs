@@ -30,5 +30,9 @@ public class MultipleGoal : Goal
 	{
 		return $"[{_timesCompleted}/{_threshold}] {Description()} ({Points()} Points each)";
 	}
+	public override string Stat()
+	{
+		return _timesCompleted.ToString();
+	}
 
 }
