@@ -62,6 +62,7 @@ class Program
 					Console.WriteLine($"eternash: {command[0]}: command not found.");
 					break;
 			}
+			user.SaveGoals();
 		}
 		while(true);
     }

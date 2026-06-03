@@ -20,7 +20,7 @@ public class SingleGoal : Goal
 	}
 	public override int CalculatePoints()
 	{
-		return this.Points();
+		return _completed ? this.Points(): 0;
 	}
 	public override string ToString()
 	{
