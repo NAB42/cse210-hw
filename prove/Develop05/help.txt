@@ -12,9 +12,9 @@ List of Commands:
 
     su [user]            switches the user
 
-	rm [user]            (requires root) removes specified user
+    rm [user]            (requires root) removes specified user
 
-	uname                shows the version
+    uname                shows the version
 
     help                 displays this menu
 

@@ -1,5 +1,11 @@
+/* 06.04.2026 Nathan Boulton
+ * This is the abstract class for all of the Goals. It doesn't have 
+ * too much. Just sets the tone for the 3 derived goal types.
+ */
+
 public abstract class Goal
 {
+	// Common attributes
 	private string _description;
 	private int _points;
 

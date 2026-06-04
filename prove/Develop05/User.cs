@@ -1,22 +1,35 @@
+/* 06.04.2026 Nathan Boulton
+ * This is the User class, which identifies the goal information, 
+ * sets the username, and runs a lot of the commands in the CLI. 
+ */
+
 public class User
 {
+	/* Attributes */
 	private string _name;
 	private Goal[] _goals = new Goal[8];
+
+	/* Constructor */
 	public User(string name)
 	{
 		_name = name;
 		ReadGoals();
 		
 	}
+
+	/* Methods */
 	public string Name()
 	{
 		return _name;
 	}
+
+	// This method loads the goals from the file into the User object. 
 	public void ReadGoals()
 	{
 		try{
 			using (StreamReader reader = new StreamReader($"usr/{_name}"))
 			{
+				// Splits the file up into the different groups for goal processing.
 				string[] goalsDone = reader.ReadLine().Split(" ");
 				// Console.WriteLine($"{_name} {goalsDone.Length} {goalsDone[0]}"); // Debug
 				SetGoals(goalsDone);
@@ -24,10 +37,13 @@ public class User
 		}
 		catch (FileNotFoundException)
 		{
+			// If the user isn't found, A user record is created with a blank slate.
 			File.Create($"usr/{_name}").Dispose();
 			SetGoals(new string[]{"false","false","false","0","0","0","0","0"});
 		}
 	}
+
+	// Private method to set the goals according to the file specs.
 	private void SetGoals(string[] goalsDone)
 	{
 		_goals[0] = new SingleGoal("Finish the Book of Mormon",200,bool.Parse(goalsDone[0]));
@@ -41,6 +57,7 @@ public class User
 
 	}
 
+	// This is the ls command. 
 	public void List()
 	{
 		Console.WriteLine("\nGOAL PROGRESS:\n");
@@ -51,12 +68,15 @@ public class User
 		Console.WriteLine();
 	}
 
+	// pwd
 	public void PrintPoints()
 	{
 		int points = TotalPoints();
-				Console.WriteLine($"Total points: {points}");
-		Console.WriteLine("Rank is a WIP :)\n");
+		Console.WriteLine($"Total points: {points}");
+		// Console.WriteLine("Rank is a WIP :)\n");
 	}
+
+	// Used to return rather than print. Used in pwd and cat.
 	public int TotalPoints()
 	{
 		int points = 0;
@@ -68,6 +88,7 @@ public class User
 
 	}
 
+	// cd
 	public void CompletelyDone()
 	{
 		Console.WriteLine("Select a number 1-8, or 0 to exit:");
@@ -83,6 +104,7 @@ public class User
 			_goals[answer-1].Complete();
 	}
 
+	// Overwrites the old goal information with the updated goal information.
 	public void SaveGoals()
 	{
 		using(StreamWriter writer = new StreamWriter($"usr/{_name}"))
