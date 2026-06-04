@@ -47,7 +47,7 @@ class Program
 					Console.WriteLine("WIP :)");
 					break;
 				case "su":
-					Console.WriteLine("WIP :)");
+					user = new User(command[1]);
 					break;
 				case "whoami":
 					Console.WriteLine(user.Name());
@@ -55,9 +55,25 @@ class Program
 				case "help":
 					Console.WriteLine(File.ReadAllText("help.txt"));
 					break;
+				case "uname":
+					Console.WriteLine($"GoalQuest v{version}");
+					break;
 				case "exit":
 					user.SaveGoals();
 					return;
+				case "rm":
+					if(user.Name() == "root")
+					{
+						Console.Write($"Are you sure you want to remove {command[1]} (y/N)?");
+						if(Console.ReadLine().ToLower() == "y")
+							File.Delete($"usr/{command[1]}");
+					}
+					else
+					{
+						Console.WriteLine("error: permission denied.");
+					}
+					Console.WriteLine();
+					break;
 				default:
 					Console.WriteLine($"eternash: {command[0]}: command not found.");
 					break;

@@ -15,17 +15,16 @@ public class User
 	public void ReadGoals()
 	{
 		try{
-			using (StreamReader reader = new StreamReader($"usr/{_name}.gq"))
+			using (StreamReader reader = new StreamReader($"usr/{_name}"))
 			{
-				Console.WriteLine("Hello!");
 				string[] goalsDone = reader.ReadLine().Split(" ");
-				Console.WriteLine($"{_name} {goalsDone.Length} {goalsDone[0]}");
+				// Console.WriteLine($"{_name} {goalsDone.Length} {goalsDone[0]}"); // Debug
 				SetGoals(goalsDone);
 			}
 		}
 		catch (FileNotFoundException)
 		{
-			File.Create($"usr/{_name}.gq").Dispose();
+			File.Create($"usr/{_name}").Dispose();
 			SetGoals(new string[]{"false","false","false","0","0","0","0","0"});
 		}
 	}
@@ -80,7 +79,7 @@ public class User
 
 	public void SaveGoals()
 	{
-		using(StreamWriter writer = new StreamWriter($"usr/{_name}.gq"))
+		using(StreamWriter writer = new StreamWriter($"usr/{_name}"))
 		{
 			string completions = "";
 			foreach(Goal goal in _goals)
