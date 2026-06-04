@@ -44,7 +44,15 @@ class Program
 					user.CompletelyDone();
 					break;
 				case "cat":
-					Console.WriteLine("WIP :)");
+					List<User> users = new List<User>();
+					foreach(string filePath in Directory.EnumerateFiles("usr"))
+					{
+						users.Add(new User(Path.GetFileName(filePath)));
+					}
+					foreach(User usr in users)
+					{
+						Console.WriteLine($"{usr.Name()}: {usr.TotalPoints()} points");
+					}
 					break;
 				case "su":
 					user = new User(command[1]);

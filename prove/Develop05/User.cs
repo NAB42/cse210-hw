@@ -53,13 +53,19 @@ public class User
 
 	public void PrintPoints()
 	{
+		int points = TotalPoints();
+				Console.WriteLine($"Total points: {points}");
+		Console.WriteLine("Rank is a WIP :)\n");
+	}
+	public int TotalPoints()
+	{
 		int points = 0;
 		foreach(Goal goal in _goals)
 		{
 			points += goal.CalculatePoints();
 		}
-		Console.WriteLine($"Total points: {points}");
-		Console.WriteLine("Rank is a WIP :)\n");
+		return points;
+
 	}
 
 	public void CompletelyDone()

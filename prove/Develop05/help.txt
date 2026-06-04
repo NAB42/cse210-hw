@@ -4,13 +4,17 @@ List of Commands:
 
     pwd                  prints # of points accumulated on this user, and their rank
 
-    cd				     marks goal as "Completely Done"
+    cd                   marks goal as "Completely Done"
 
     cat                  displays the standings among all users.
 
     whoami               displays the current user
 
     su [user]            switches the user
+
+	rm [user]            (requires root) removes specified user
+
+	uname                shows the version
 
     help                 displays this menu
 
