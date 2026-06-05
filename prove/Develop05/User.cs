@@ -7,7 +7,7 @@ public class User
 {
 	/* Attributes */
 	private string _name;
-	private Goal[] _goals = new Goal[8];
+	private List<Goal> _goals;
 
 	/* Constructor */
 	public User(string name)
@@ -31,6 +31,7 @@ public class User
 			{
 				// Splits the file up into the different groups for goal processing.
 				string[] goalsDone = reader.ReadLine().Split(" ");
+				_goals = new List<Goal>(goalsDone.Length);
 				// Console.WriteLine($"{_name} {goalsDone.Length} {goalsDone[0]}"); // Debug
 				SetGoals(goalsDone);
 			}
@@ -39,22 +40,68 @@ public class User
 		{
 			// If the user isn't found, A user record is created with a blank slate.
 			File.Create($"usr/{_name}").Dispose();
-			SetGoals(new string[]{"false","false","false","0","0","0","0","0"});
+			string[] s = new string[File.ReadAllLines("goals").Length];
+			_goals = new List<Goal>(s.Length);
+			for(int i = 0; i < s.Length; i++)
+			{
+				s[i] = "";
+			}
+			SetGoals(s);
 		}
 	}
 
 	// Private method to set the goals according to the file specs.
 	private void SetGoals(string[] goalsDone)
-	{
-		_goals[0] = new SingleGoal("Finish the Book of Mormon",200,bool.Parse(goalsDone[0]));
-		_goals[1] = new SingleGoal("Read the whole standard works",1000,bool.Parse(goalsDone[1]));
-		_goals[2] = new SingleGoal("Give a sacrament meeting talk",100,bool.Parse(goalsDone[2]));
-		_goals[3] = new EternalGoal("Read a scripture chapter",10,int.Parse(goalsDone[3]));
-		_goals[4] = new EternalGoal("Say daily prayers",5,int.Parse(goalsDone[4]));
-		_goals[5] = new MultipleGoal("Attend the Temple",20,int.Parse(goalsDone[5]),10);
-		_goals[6] = new MultipleGoal("Memorize a scripture",15,int.Parse(goalsDone[6]),20);
-		_goals[7] = new EternalGoal("Complete a homework assignment",2,int.Parse(goalsDone[7]));
+	{	
+		// Loads all of the goals into memory	
+		string[] lines = File.ReadAllLines("goals");
 
+		// Checking if a user is missing some goals 
+		if(lines.Length > goalsDone.Length)
+		{
+			List<string> temp = new List<string>(goalsDone);
+			for(int i = 0; i < lines.Length-goalsDone.Length;i++)
+			{
+				temp.Add("0");
+			}
+			goalsDone = temp.ToArray();
+		}
+
+		// This is the loop that loads all of the goals into the user memory.
+		for(int i = 0; i < lines.Length; i++)
+		{
+			// Console.WriteLine($"Len {_goals.Count}"); // debug
+			string[] obj = lines[i].Split(",");
+			if(goalsDone[i] == "")
+				goalsDone[i] = "0";
+			switch (obj[0])
+			{
+
+				// Single Goals 
+				case "1":
+					if(goalsDone[i] != "true" && goalsDone[i] != "false")
+						goalsDone[i] = "false";
+					_goals.Add(new SingleGoal(obj[1],int.Parse(obj[2]),bool.Parse(goalsDone[i])));
+					break;
+				// Checklist Goals 
+				case "2":
+					_goals.Add(new MultipleGoal(obj[1],int.Parse(obj[2]),int.Parse(goalsDone[i]),int.Parse(obj[3])));
+					break;
+
+				// Eternal Goals 
+				case "3":
+					_goals.Add(new EternalGoal(obj[1],int.Parse(obj[2]),int.Parse(goalsDone[i])));
+					break;
+				default:
+					break;
+			}
+			// Console.WriteLine("This line got hit"); // debug
+		}	
+	}
+	
+	// For the touch command. Appends a goal to the list.
+	public void AddGoal(Goal goal){
+		_goals.Add(goal);
 	}
 
 	// This is the ls command. 

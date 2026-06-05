@@ -6,6 +6,8 @@ List of Commands:
 
     cd                   marks goal as "Completely Done"
 
+    touch                creates a new goal after the user follows the specified prompt
+
     cat                  displays the standings among all users.
 
     whoami               displays the current user

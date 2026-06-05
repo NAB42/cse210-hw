@@ -1,4 +1,4 @@
-/* 06.04.2026 Nathan Boulton. Version 1.0.0
+/* 06.04.2026 Nathan Boulton. Version 1.0.1
  * Welcome to GoalQuest, a Linux CLI-esque game for completing goals.
  *
  * Honestly things are pretty simple here. The premise is that there are a bunch 
@@ -20,7 +20,7 @@ class Program
     static void Main(string[] args)
     {
 		// This is the version of the game. If there's a different number elsewhere, it's wrong.
-		string version = "1.0.0";
+		string version = "1.0.1";
 		Console.Clear();
 		// Here is the login screen. Type anything and if it doesn't exist, it will create a 
 		// new user with blank goals.
@@ -69,6 +69,60 @@ class Program
 				// goals not really, but it helps it fit in with 'cd'.
 				case "cd":
 					user.CompletelyDone();
+					break;
+				// This is the most complex command (possibly due to a trash design, I don't know).
+				// In Linux, the touch command makes a new file. Here, it makes a new goal. 
+				case "touch":
+					string touch = "";
+					string type = "";
+					string descr = "";
+					string points = "";
+					string thresh = "";
+					bool mult = false;
+					Console.Write(
+							"""
+							Choose a goaltype:
+							1. Single-use Goal
+							2. Multi-use Goal (has a threshold)
+							3. Eternal Goal (Infinite acheivement)
+							>  
+							""");
+					// Constructs the thing to add to the file
+					type = Console.ReadLine();
+					touch = type;
+					if(touch == "2")
+						mult = true;
+					touch += ",";
+					Console.Write("Enter goal description:\n> ");
+					descr = Console.ReadLine();
+					touch += descr + ",";
+					Console.Write("Enter number of points:\n> ");
+					points = Console.ReadLine();
+					touch += points;
+					if(mult)
+					{
+						Console.Write("Enter threshold: \n> ");
+						thresh = Console.ReadLine();
+						touch += "," + thresh;
+					}
+					using(StreamWriter writer = new StreamWriter("goals",true))
+					{
+						writer.WriteLine(touch);
+					}
+					// Immediately loads the goals into memory. This could do with being made a method 
+					// later. 
+					switch(type)
+					{
+						case "1":
+							user.AddGoal(new SingleGoal(descr,int.Parse(points),false));
+							break;
+						case "2":
+							user.AddGoal(new MultipleGoal(descr,int.Parse(points),0,int.Parse(thresh)));	
+							break;
+						case "3":
+							user.AddGoal(new EternalGoal(descr,int.Parse(points),0));
+							break;
+					}
 					break;
 				// This command prints out all of the users and their points. In Linux it's used 
 				// to print out the contents of a file.
