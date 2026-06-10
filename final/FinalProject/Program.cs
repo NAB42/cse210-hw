@@ -4,6 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello FinalProject World!");
+        Console.WriteLine("This is a chess game.");
     }
 }
