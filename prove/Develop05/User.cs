@@ -8,6 +8,7 @@ public class User
 	/* Attributes */
 	private string _name;
 	private List<Goal> _goals;
+	private string _rank;
 
 	/* Constructor */
 	public User(string name)
@@ -163,5 +164,41 @@ public class User
 			}
 			writer.WriteLine(completions.TrimEnd());
 		}
+	}
+
+	// This determines the rank, based on their points. Good luck getting the default case.
+	public string GetRank()
+	{
+		switch(this.TotalPoints())
+		{
+			case < 100:
+				_rank = "Tin";
+				break;
+			case  < 500:
+				_rank = "Bronze";
+				break;
+			case  < 1000:
+				_rank = "Silver";
+				break;
+			case  < 2000:
+				_rank = "Gold";
+				break;
+			case  < 5000:
+				_rank = "Platinum";
+				break;
+			case  < 10000:
+				_rank = "Iridium";
+				break;
+			case  < 50000:
+				_rank = "Rhodium";
+				break;
+			case >= 50000:
+				_rank = "Uranium";
+				break;
+			default:
+				_rank = "How did we get here?";
+				break;
+		}
+		return _rank;
 	}
 }

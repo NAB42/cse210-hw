@@ -1,4 +1,4 @@
-/* 06.04.2026 Nathan Boulton. Version 1.0.1
+/* 06.04.2026 Nathan Boulton. Version 1.0.2
  * Welcome to GoalQuest, a Linux CLI-esque game for completing goals.
  *
  * Honestly things are pretty simple here. The premise is that there are a bunch 
@@ -14,13 +14,14 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
 		// This is the version of the game. If there's a different number elsewhere, it's wrong.
-		string version = "1.0.1";
+		string version = "1.0.2";
 		Console.Clear();
 		// Here is the login screen. Type anything and if it doesn't exist, it will create a 
 		// new user with blank goals.
@@ -132,9 +133,11 @@ class Program
 					{
 						users.Add(new User(Path.GetFileName(filePath)));
 					}
-					foreach(User usr in users)
+					// Sorts the users by points.
+					List<User> usrSorted = users.OrderByDescending(u => u.Name()).ToList();
+					foreach(User usr in usrSorted)
 					{
-						Console.WriteLine($"{usr.Name()}: {usr.TotalPoints()} points");
+						Console.WriteLine($"{usr.Name()}: {usr.TotalPoints()} points ({usr.GetRank()} rank)");
 					}
 					break;
 				// "Switch User". Same use case in Linux. If the user isn't created a new record is made. 
