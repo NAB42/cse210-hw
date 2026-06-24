@@ -1,8 +1,9 @@
 public class Queen : Piece
 {
-	public Queen(Location location)
+	public Queen(Location location,bool side)
 	{
 		this.SetLocation(location);
+		this.SetSide(side);
 	}
 	public Queen()
 	{

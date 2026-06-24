@@ -6,7 +6,7 @@ public class Location
 	public Location(string location)
 	{
 		_letter = location[0];
-		_number = location[1];
+		_number = location[1]-48;
 	}
 	public Location(char letter,int number)
 	{
@@ -18,4 +18,9 @@ public class Location
 	{
 		return $"{_letter}{_number}";
 	}
+	public int GetNum()
+	{
+		return _number;
+	}
+
 }
