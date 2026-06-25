@@ -1,6 +1,6 @@
 public class Location
 {
-	private char _letter;
+	private int _letter;
 	private int _number;
 
 	public Location(string location)
@@ -16,11 +16,20 @@ public class Location
 
 	public override string ToString()
 	{
-		return $"{_letter}{_number}";
+		return $"{(char)_letter}{_number + 1}";
 	}
 	public int GetNum()
 	{
 		return _number;
+	}
+	public int GetLetter()
+	{
+		return _letter;
+	}
+	public void SetLocation(int l,int n)
+	{
+		_letter = l;
+		_number = n;
 	}
 
 }
