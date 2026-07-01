@@ -1,0 +1,68 @@
+public class Task
+{
+	// Attributes 
+	private string _name;
+	private string _descr;
+	private string _notes;
+	private int _state;
+	private DateTime _dateCompleted;
+	
+	// Default constructor. I don't really see the point but why not.
+	public Task()
+	{
+		_name = "Task";
+		_descr = "Getter done";
+		_notes = "";
+		_state = 0;
+	}
+	public Task(string name,string descr)
+	{
+		_name = name;
+		_descr = descr;
+	}
+	
+	// Methods!
+	public string Name()
+	{
+		return _name;
+	}
+	public string Descr()
+	{
+		return _descr;
+	}
+	public string Notes()
+	{
+		return _notes;
+	}
+	public int State()
+	{
+		return _state;
+	}
+
+	public void SetName(string name)
+	{
+		_name = name;
+	}
+	public void SetDescr(string descr)
+	{
+		_descr = descr;
+	}
+	public void SetNotes(string notes)
+	{
+		_notes = notes;
+	}
+	public void MoveUp()
+	{
+		if(_state < 3)
+		{
+			_state++;
+		}
+		else
+			return;
+		if(_state == 3)
+		{
+			_dateCompleted = DateTime.Now;
+		}
+	}
+
+}
