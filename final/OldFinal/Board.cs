@@ -3,13 +3,15 @@ public class Board
 	private Piece[,] _board;
 	private int _number;
 	private int _letter;
+	private bool _chosen;
 
 	public Board(Location loc)
 	{
-	_board = new Piece[8,8];
-	_board[0,0] = new Rook(false);
-	_board[0,1] = new Rook(true);
-	SetSelected(loc);	
+		_board = new Piece[8,8];
+		_board[0,0] = new Rook(false);
+		_board[0,1] = new Rook(true);
+		SetSelected(loc);
+		_chosen=false;
 	}
 	public void Display()
 	{
@@ -45,4 +47,9 @@ public class Board
 		_number = l.GetNum();
 		_letter = (int)l.GetLetter() - 65;
 	}
+	public Piece Get()
+	{
+		return _board[_number,_letter];
+	}
+	
 }
