@@ -6,4 +6,13 @@ public class EventTask : Task
 	{
 		_dueDate = due;
 	}
+
+	public DateTime DueDate()
+	{
+		return _dueDate;
+	}
+	public void SetDueDate(DateTime due)
+	{
+		_dueDate = due;
+	}
 }
