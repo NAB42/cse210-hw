@@ -1,6 +1,6 @@
 public class Project : Group 
 {
-	public Project(){
-
+	public Project(List<Task> list){
+		this.SetList(list);
 	}
 }

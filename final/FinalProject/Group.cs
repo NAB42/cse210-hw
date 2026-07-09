@@ -9,4 +9,8 @@ public abstract class Group
 	public  void AddTask(Task task){
 		_tasks.Add(task);
 	}
+	public void SetList(List<Task> list)
+	{
+		_tasks = list;
+	}
 }

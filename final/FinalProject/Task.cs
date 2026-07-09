@@ -19,6 +19,8 @@ public class Task
 	{
 		_name = name;
 		_descr = descr;
+		_notes = "";
+		_state = 0;
 	}
 	
 	// Methods!
@@ -63,6 +65,10 @@ public class Task
 		{
 			_dateCompleted = DateTime.Now;
 		}
+	}
+	public override string ToString()
+	{
+		return _name;
 	}
 
 }

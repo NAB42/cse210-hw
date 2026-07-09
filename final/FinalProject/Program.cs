@@ -19,7 +19,7 @@ public class Program
 			Y = Pos.Center()
 		};
 		window.Add(label);*/
-		using MainWindow window = new MainWindow(new Project());
+		using MainWindow window = new MainWindow(new Project(new List<Task>(){new Task("Do the dishes","Get them done"),new Task(),new Task()}));
 
 		app.Run(window);	
 	}
