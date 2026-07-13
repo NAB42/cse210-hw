@@ -15,4 +15,11 @@ public class EventTask : Task
 	{
 		_dueDate = due;
 	}
+	public override View BuildDetailView() 
+	{
+		return new Label 
+		{
+			Text = $"Deadline: {_dueDate}"
+		};
+	}
 }

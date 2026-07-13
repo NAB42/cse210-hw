@@ -70,5 +70,9 @@ public class Task
 	{
 		return _name;
 	}
-
+	
+	public virtual View BuildDetailView()
+	{
+		return null;
+	}
 }
