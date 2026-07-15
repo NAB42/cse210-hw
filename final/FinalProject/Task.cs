@@ -5,7 +5,7 @@ public class Task
 	private string _descr;
 	private string _notes;
 	private int _state;
-	private DateTime _dateCompleted;
+	private DateTime? _dateCompleted;
 	
 	// Default constructor. I don't really see the point but why not.
 	public Task()
@@ -66,6 +66,10 @@ public class Task
 			_dateCompleted = DateTime.Now;
 		}
 	}
+	public void SetState(int s)
+	{
+		_state = s;
+	}
 	public override string ToString()
 	{
 		return _name;
@@ -74,5 +78,13 @@ public class Task
 	public virtual View BuildDetailView()
 	{
 		return null;
+	}
+	public void SetCompletion(DateTime? time)
+	{
+		_dateCompleted = time;
+	}
+	public string DateCompleted()
+	{
+		return _dateCompleted != null ? $"Date Completed: {_dateCompleted.ToString()}" : "";
 	}
 }

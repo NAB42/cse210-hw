@@ -19,7 +19,7 @@ public class EventTask : Task
 	{
 		return new Label 
 		{
-			Text = $"Deadline: {_dueDate}"
+			Text = $"Deadline: {_dueDate}\n{Descr()}\n{DateCompleted()}\nNotes"
 		};
 	}
 }
