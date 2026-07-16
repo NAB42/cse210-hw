@@ -149,6 +149,18 @@ public class MainWindow : Window
 				_app.Run(helpWin);
 				helpWin.Dispose();
 			}
+			else if (e == Key.N.WithCtrl)
+			{
+				CreateDialog create = new CreateDialog(_app);
+				_app.Run(create);
+				Task newTask = create.Result();
+				if (newTask != null)
+				{
+					_group.AddTask(newTask);
+					LoadTasks();
+				}
+				create.Dispose();
+			}
 			else return;
 			
 			LoadTasks();

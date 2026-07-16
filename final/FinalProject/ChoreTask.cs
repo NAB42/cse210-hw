@@ -1,18 +1,18 @@
 public class ChoreTask : Task
 {
-	private string _repeat;
+	private int _repeat;
 
-	public ChoreTask(string name,string descr,string repeat) 
+	public ChoreTask(string name,string descr,int repeat) 
 		: base(name,descr)
 	{
 		_repeat = repeat;
 	}
 
-	public string Rate()
+	public int Rate()
 	{
 		return _repeat;
 	}
-	public void SetRate(string repeat)
+	public void SetRate(int repeat)
 	{
 		_repeat = repeat;
 	}

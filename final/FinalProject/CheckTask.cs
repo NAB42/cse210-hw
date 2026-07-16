@@ -30,7 +30,7 @@ public class CheckTask : Task
 		}
 		return new Label
 		{
-			Text = thing
+			Text = thing + "\nNotes"
 		};
 	}
 }
