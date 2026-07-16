@@ -2,7 +2,7 @@ public class TaskDialog : Dialog
 {
 	public TaskDialog(Task task)
 	{
-		Title = task.Name();
+		Title = $"{task.Name()} (Esc)";
 		Width = Dim.Percent(50);
 		Height = Dim.Percent(50);
 		View deets = task.BuildDetailView();

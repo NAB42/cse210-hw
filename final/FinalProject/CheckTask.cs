@@ -21,4 +21,16 @@ public class CheckTask : Task
 		}
 		return output;
 	}
+	public override View BuildDetailView() 
+	{
+		string thing = "";
+		foreach(Check item in _checklist)
+		{
+			thing += item.ToString() + "\n";
+		}
+		return new Label
+		{
+			Text = thing
+		};
+	}
 }

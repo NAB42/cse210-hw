@@ -16,7 +16,7 @@ public class MainWindow : Window
 	{
 		_group = grp;
 		_app = app;
-		Title = "Kanban Board (Esc)";
+		Title = "Task Board (Ctrl+H for Help, Esc to Exit)";
 
 		_toDo = new FrameView
 		{
@@ -142,6 +142,12 @@ public class MainWindow : Window
 				else if (_progList.HasFocus) _doList.SetFocus();
 				else if (_doneList.HasFocus) _progList.SetFocus();
 				e.Handled = true;
+			}
+			else if (e == Key.H.WithCtrl)
+			{
+				HelpDialog helpWin = new HelpDialog();
+				_app.Run(helpWin);
+				helpWin.Dispose();
 			}
 			else return;
 			
