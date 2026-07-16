@@ -120,6 +120,10 @@ public class MainWindow : Window
 				task.SetState(2);
 				task.SetCompletion(DateTime.Now);
 			}
+			else if (e == Key.R.WithCtrl)
+			{
+				_group.RemoveTask(task);
+			}
 			else return;
 			e.Handled = true;
 			LoadTasks();
@@ -161,11 +165,16 @@ public class MainWindow : Window
 				}
 				create.Dispose();
 			}
+			
 			else return;
 			
 			LoadTasks();
 		};
-			
+		
+		_doList.KeyBindings.Remove(Key.N.WithCtrl);
+		_progList.KeyBindings.Remove(Key.N.WithCtrl);
+		_doneList.KeyBindings.Remove(Key.N.WithCtrl);
+
 		_toDo.Add(_doList);
 		_inProgress.Add(_progList);
 		_done.Add(_doneList);
@@ -176,8 +185,11 @@ public class MainWindow : Window
 
 	private void LoadTasks()
 	{
-		_doList.SetSource(new ObservableCollection<Task>(_group.Tasks().Where(c => c.State() == 0)));
-		_progList.SetSource(new ObservableCollection<Task>(_group.Tasks().Where(c => c.State() == 1)));
-		_doneList.SetSource(new ObservableCollection<Task>(_group.Tasks().Where(c => c.State() == 2)));
+		_doList.SetSource(new ObservableCollection<Task>(
+					_group.Tasks().Where(c => c.State() == 0)));
+		_progList.SetSource(new ObservableCollection<Task>(
+					_group.Tasks().Where(c => c.State() == 1)));
+		_doneList.SetSource(new ObservableCollection<Task>(
+					_group.Tasks().Where(c => c.State() == 2)));
 	}
 }

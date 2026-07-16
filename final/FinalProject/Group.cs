@@ -13,4 +13,8 @@ public abstract class Group
 	{
 		_tasks = list;
 	}
+	public void RemoveTask(Task task)
+	{
+		_tasks.Remove(task);
+	}
 }
