@@ -22,6 +22,17 @@ public class Task
 		_notes = "";
 		_state = 0;
 	}
+	public Task(string fileString)
+	{
+		
+		string[] parts = fileString.Split("|");
+		_name = parts[0];
+		_descr = parts[1];
+		_notes = parts[3];
+		ParseNotes();
+		_state = int.Parse(parts[2]);
+		_dateCompleted = string.IsNullOrEmpty(parts[4]) ? null : DateTime.Parse(parts[4]);
+	}
 	
 	// Methods!
 	public string Name()
@@ -86,5 +97,24 @@ public class Task
 	public string DateCompleted()
 	{
 		return _dateCompleted != null ? $"Date Completed: {_dateCompleted.ToString()}" : "";
+	}
+	public DateTime? GetCompletedDate()
+	{
+		return _dateCompleted;
+	}
+	private string FixNotes()
+	{
+		_notes.Replace("\n","\\n");
+		return _notes;
+	}
+	private string ParseNotes()
+	{
+		_notes.Replace("\\n","\n");
+		return _notes;
+	}
+
+	public virtual string ToFileString()
+	{
+		return $"{_name}|{_descr}|{_state}|{FixNotes()}|{_dateCompleted}";
 	}
 }

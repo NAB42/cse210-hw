@@ -7,6 +7,20 @@ public class CheckTask : Task
 	{
 		_checklist = checklist;
 	}
+	public CheckTask(string fileString) : base(fileString)
+	{
+		string[] parts = fileString.Split("|");
+		string[] checks = parts[5].Split(";");
+		_checklist = new List<Check>();
+		File.WriteAllLines("check.log",checks);
+		foreach(string s in checks)
+		{
+			if (string.IsNullOrWhiteSpace(s)) continue;
+			string[] bits = s.Split(",");
+			File.AppendAllLines("check.log",bits);
+			_checklist.Add(new Check(bits[0],bool.Parse(bits[1])));
+		}
+	}
 
 	public List<Check> GetList()
 	{
@@ -30,7 +44,16 @@ public class CheckTask : Task
 		}
 		return new Label
 		{
-			Text = thing + "\nNotes"
+			Text = Descr() + "\n" + thing + $"\n{DateCompleted()}\nNotes"
 		};
+	}
+	public override string ToFileString() 
+	{
+		string parsedCheck = "";
+		foreach(Check c in _checklist)
+		{
+			parsedCheck += $"{c.Description()},{c.IsComplete()};";
+		}
+		return base.ToFileString() + $"|{parsedCheck}";
 	}
 }

@@ -8,6 +8,11 @@ public class Check
 		_descr = descr;
 		_complete = false;
 	}
+	public Check(string descr,bool complete)
+	{
+		_descr = descr;
+		_complete = complete;
+	}
 	public bool IsComplete()
 	{
 		return _complete;

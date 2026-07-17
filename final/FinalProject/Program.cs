@@ -11,19 +11,12 @@ public class Program
 	{
 		using IApplication app = Application.Create();
 		app.Init();
-
-		/*using Window window = new(){ Title = "Kanban (Esc to quit)" };
-		Label label = new()
-		{
-			Text = "Welcome to TuiTasks",
-			X = Pos.Center(),
-			Y = Pos.Center()
-		};
-		window.Add(label);*/
+		Group proj = new Group();
+		proj.Load();
 		try{
-		using MainWindow window = new MainWindow(new Project(new List<Task>(){new EventTask("Do the dishes","Get them done",DateTime.Now),new Task(),new Task()}),app);
+			using MainWindow window = new MainWindow(proj,app);
 
-		app.Run(window);
+			app.Run(window);
 		}
 		catch (Exception e)
 		{
@@ -31,6 +24,7 @@ public class Program
 			Console.WriteLine(e);
 			return;
 		}
+		proj.Save();
 		app.Dispose();
 	}
 }

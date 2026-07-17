@@ -7,6 +7,12 @@ public class EventTask : Task
 		_dueDate = due;
 	}
 
+	public EventTask(string fileString) : base(fileString)
+	{
+		string[] parts = fileString.Split("|");
+		_dueDate = DateTime.Parse(parts[5]);
+	}
+
 	public DateTime DueDate()
 	{
 		return _dueDate;
@@ -21,5 +27,9 @@ public class EventTask : Task
 		{
 			Text = $"Deadline: {_dueDate}\n{Descr()}\n{DateCompleted()}\nNotes"
 		};
+	}
+	public override string ToFileString() 
+	{
+		return $"{base.ToFileString()}|{_dueDate.ToString()}";
 	}
 }
