@@ -174,6 +174,9 @@ public class MainWindow : Window
 		_doList.KeyBindings.Remove(Key.N.WithCtrl);
 		_progList.KeyBindings.Remove(Key.N.WithCtrl);
 		_doneList.KeyBindings.Remove(Key.N.WithCtrl);
+		_doList.KeyBindings.Remove(Key.P.WithCtrl);
+		_progList.KeyBindings.Remove(Key.P.WithCtrl);
+		_doneList.KeyBindings.Remove(Key.P.WithCtrl);
 
 		_toDo.Add(_doList);
 		_inProgress.Add(_progList);
