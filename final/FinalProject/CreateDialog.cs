@@ -52,15 +52,21 @@ public class CreateDialog : Dialog
 			Y = Pos.Bottom(_nameField) + 1,
 			Width = Dim.Fill()
 		};
+		Label space = new Label
+		{
+			Text = "Use arrow keys to navigate, press Space to select.",
+			X = 0,
+			Y = Pos.Bottom(descr) + 1,
+		};
 		_typeSelector = new OptionSelector<TaskType>
 		{
 			X = 0,
-			Y = Pos.Bottom(descr) + 1
+			Y = Pos.Bottom(space) + 1
 		};
 
 		_typeSelector.ValueChanged += (s, e) => RebuildExtraFields();
 
-		Add(name, _nameField,descr, _descField, _typeSelector);
+		Add(name, _nameField,descr, _descField, space, _typeSelector);
 		RebuildExtraFields();
 
 		Button create = new Button 
