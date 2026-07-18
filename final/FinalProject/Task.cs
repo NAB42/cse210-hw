@@ -29,7 +29,7 @@ public class Task
 		_name = parts[0];
 		_descr = parts[1];
 		_notes = parts[3];
-		ParseNotes();
+		_notes = ParseNotes();
 		_state = int.Parse(parts[2]);
 		_dateCompleted = string.IsNullOrEmpty(parts[4]) ? null : DateTime.Parse(parts[4]);
 	}
@@ -104,13 +104,13 @@ public class Task
 	}
 	private string FixNotes()
 	{
-		_notes.Replace("\n","\\n");
-		return _notes;
+		return _notes.Replace("\n","\\n");
+		//return _notes;
 	}
 	private string ParseNotes()
 	{
-		_notes.Replace("\\n","\n");
-		return _notes;
+		return _notes.Replace("\\n","\n");
+		//return _notes;
 	}
 
 	public virtual string ToFileString()
