@@ -20,6 +20,7 @@ public class HelpDialog : Dialog
 					Ctrl+T - move task to To Do
 					Ctrl+P - move task to In Progress
 					Ctrl+D - move task to Done
+					Ctrl+S - save the taskboard
 					Ctrl+H - open this window
 					Ctrl+N - Create a new task
 					Ctrl+R - Delete a task (WARNING: THIS IS NOT UNDOABLE!)

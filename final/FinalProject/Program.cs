@@ -1,3 +1,10 @@
+/** 2026 Nathan Boulton
+ *  
+ *
+ *
+ *
+ */
+
 global using System;
 global using Terminal.Gui;
 global using Terminal.Gui.App;
@@ -14,9 +21,9 @@ public class Program
 		Group proj = new Group();
 		proj.Load();
 		try{
-			using MainWindow window = new MainWindow(proj,app);
+			using MainWindow window = new MainWindow(proj,app,() => proj.Save());
 
-			app.Run(window);
+			app.Run(window);	
 		}
 		catch (Exception e)
 		{

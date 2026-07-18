@@ -25,7 +25,7 @@ public class Group
 	{
 		_tasks.Remove(task);
 	}
-	public void Save()
+	public void Save() 
 	{
 		string taskContents = "";
 		string eventContents = "";

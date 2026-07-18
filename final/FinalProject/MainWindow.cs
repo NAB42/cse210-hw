@@ -12,10 +12,13 @@ public class MainWindow : Window
 	private ListView<Task> _progList;
 	private ListView<Task> _doneList;
 
-	public MainWindow(Group grp, IApplication app)
+	private Action _onSave;
+
+	public MainWindow(Group grp, IApplication app, Action onSave)
 	{
 		_group = grp;
 		_app = app;
+		_onSave = onSave;
 		Title = "Task Board (Ctrl+H for Help, Esc to Exit)";
 
 		_toDo = new FrameView
@@ -164,6 +167,11 @@ public class MainWindow : Window
 					LoadTasks();
 				}
 				create.Dispose();
+			}
+			else if (e == Key.S.WithCtrl)
+			{
+				_onSave();
+				e.Handled = true;
 			}
 			
 			else return;
