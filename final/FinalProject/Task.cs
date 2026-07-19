@@ -1,3 +1,10 @@
+/** 2026 Nathan Boulton
+ * This is the parent Task class. It represents a type of task and the general 
+ * fields and methods of any task. 
+ * This includes fields for the name, description, state, date completed, and any 
+ * notes the user wants to add.
+ */
+
 public class Task
 {
 	// Attributes 
@@ -15,6 +22,7 @@ public class Task
 		_notes = "";
 		_state = 0;
 	}
+	// This is for creating a new Task
 	public Task(string name,string descr)
 	{
 		_name = name;
@@ -22,6 +30,8 @@ public class Task
 		_notes = "";
 		_state = 0;
 	}
+	// This is for loading existing tasks from a file. It parses the line into all of the 
+	// necessary fields
 	public Task(string fileString)
 	{
 		
@@ -64,6 +74,7 @@ public class Task
 	{
 		_notes = notes;
 	}
+	// Not really used in the context, but maybe I'll add functionality for this one day.
 	public void MoveUp()
 	{
 		if(_state < 3)
@@ -85,7 +96,7 @@ public class Task
 	{
 		return _name;
 	}
-	
+	// The parent method for displaying fields.
 	public virtual View BuildDetailView()
 	{
 		return null;
@@ -96,12 +107,14 @@ public class Task
 	}
 	public string DateCompleted()
 	{
+		// If there isn't a date completed display nothing. 
 		return _dateCompleted != null ? $"Date Completed: {_dateCompleted.ToString()}" : "";
 	}
 	public DateTime? GetCompletedDate()
 	{
 		return _dateCompleted;
 	}
+	// private methods here to handle newlines in user notes.
 	private string FixNotes()
 	{
 		return _notes.Replace("\n","\\n");
@@ -112,7 +125,7 @@ public class Task
 		return _notes.Replace("\\n","\n");
 		//return _notes;
 	}
-
+	// This method is here to create the string that will be written to the save file
 	public virtual string ToFileString()
 	{
 		return $"{_name}|{_descr}|{_state}|{FixNotes()}|{_dateCompleted}";

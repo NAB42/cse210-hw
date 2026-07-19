@@ -1,3 +1,9 @@
+/** 2026 Nathan Boulton
+ * This is a repeting task the resets its status (if it's done) after the 
+ * repeat. I made this super recently so I've actually never been able to check
+ * if it works. I assume it does.
+ */
+
 public class ChoreTask : Task
 {
 	private int _repeat;
@@ -15,6 +21,7 @@ public class ChoreTask : Task
 
 	public int Rate()
 	{
+		// resets to To Do if it has a completed date longer than the repeat rate
 		if ((DateTime.Now - GetCompletedDate())?.TotalDays > _repeat)
 		{
 			SetState(0);

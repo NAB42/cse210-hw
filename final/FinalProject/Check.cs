@@ -1,3 +1,10 @@
+/** 2026 Nathan Boulton
+ * I didn't really need a class for this, but it felt a little better than 
+ * having a List<string bool> type.
+ * Anyways it's pretty straightforward. It's the checklist thing to determine 
+ * if something is done or not. 
+ */
+
 public class Check
 {
 	private bool _complete;

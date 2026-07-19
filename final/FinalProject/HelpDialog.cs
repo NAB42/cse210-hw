@@ -1,3 +1,8 @@
+/** 2026 Nathan Boulton
+ * This is the help window. It displays the keyboard bindings so that the user
+ * knows what's going on. 
+ */
+
 public class HelpDialog : Dialog
 {
     public HelpDialog()

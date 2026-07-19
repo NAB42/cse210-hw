@@ -1,3 +1,9 @@
+/** 2026 Nathan Boulton
+ * Probably the most useful of the tasks, this one is a normal task, but with a 
+ * due date. That way it actually gets done!
+ * Other than that it's rpetty straightforward.
+ */
+
 public class EventTask : Task 
 {
 	private DateTime _dueDate;
